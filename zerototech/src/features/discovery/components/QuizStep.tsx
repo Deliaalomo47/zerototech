@@ -8,35 +8,26 @@ interface QuizStepProps {
 }
 
 /**
- * Vista de una pregunta del quiz — rediseño v2.
+ * Quiz step — v3.
  *
- * - Animación de entrada más expresiva
- * - Mejor jerarquía visual entre pregunta y hint
- * - Opciones con stagger animation
- * - Más aire entre elementos
+ * Tight hierarchy: question → hint → options.
+ * Stagger animation on options for rhythm.
  */
 export function QuizStep({ question, selectedOptionId, onSelectOption }: QuizStepProps) {
   return (
-    <div className="animate-fadeInUp">
-      {/* Número de pregunta como indicador visual */}
-      <div className="mb-4 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-sm font-bold text-primary">
-        {question.id}
-      </div>
-
-      {/* Pregunta */}
-      <h2 className="mb-3 font-display text-2xl font-bold leading-snug text-dark sm:text-3xl">
+    <div className="animate-fade-up">
+      {/* Question */}
+      <h2 className="mb-2 font-display text-display-sm text-neutral-900">
         {question.question}
       </h2>
 
-      {/* Hint empático */}
+      {/* Hint */}
       {question.hint && (
-        <p className="mb-8 text-base leading-relaxed text-dark-muted">
-          {question.hint}
-        </p>
+        <p className="mb-7 text-body-sm text-neutral-400">{question.hint}</p>
       )}
 
-      {/* Opciones con efecto stagger */}
-      <div className="stagger-children flex flex-col gap-3">
+      {/* Options */}
+      <div className="stagger flex flex-col gap-2.5">
         {question.options.map((option) => (
           <OptionCard
             key={option.id}

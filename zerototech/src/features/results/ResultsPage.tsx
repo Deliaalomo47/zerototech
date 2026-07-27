@@ -1,4 +1,4 @@
-import { RotateCcw, Map } from "lucide-react";
+import { RotateCcw } from "lucide-react";
 import type { QuizResult } from "@/features/discovery/types";
 import { getRoadmapForCategory } from "./data/roadmaps";
 import { ProfileCard, RoadmapSection, XPBar } from "./components";
@@ -12,12 +12,10 @@ interface ResultsPageProps {
 }
 
 /**
- * Página de resultados — rediseño v2.
+ * Results page — v3.
  *
- * - Más espacio entre secciones para narrativa visual
- * - Header de roadmap con ícono decorativo
- * - Botón de reset más sutil y fuera del camino
- * - Separadores visuales con gradiente
+ * Clean structure: profile → XP → roadmap → reset.
+ * Generous whitespace between sections.
  */
 export function ResultsPage({
   result,
@@ -31,34 +29,25 @@ export function ResultsPage({
   return (
     <section
       id="discovery-test"
-      className="mx-auto max-w-3xl px-5 py-16 sm:px-8"
+      className="mx-auto max-w-2xl px-5 py-18 sm:px-6"
       aria-label="Resultado del test y roadmap"
     >
-      {/* Tarjeta de perfil */}
       <ProfileCard roadmap={roadmap} />
 
-      {/* Barra de XP */}
-      <div className="mt-8">
+      <div className="mt-6">
         <XPBar totalXP={totalXP} />
       </div>
 
-      {/* Divider */}
-      <div className="section-divider" />
-
-      {/* Título del roadmap */}
-      <div className="mb-10 text-center animate-fadeInUp-delay-2">
-        <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-          <Map className="h-6 w-6 text-primary" aria-hidden="true" />
-        </div>
-        <h2 className="mb-2 font-display text-section font-bold text-dark">
+      {/* Roadmap header */}
+      <div className="mt-15 mb-8 animate-fade-up-2">
+        <h2 className="font-display text-display-sm text-neutral-900">
           Tu ruta de aprendizaje
         </h2>
-        <p className="text-dark-soft">
-          Avanzá a tu ritmo. Cada nodo que completes suma experiencia.
+        <p className="mt-1 text-body-sm text-neutral-400">
+          Avanzá a tu ritmo. Cada nodo suma experiencia.
         </p>
       </div>
 
-      {/* Roadmap */}
       <RoadmapSection
         phases={roadmap.phases}
         isNodeCompleted={isNodeCompleted}
@@ -66,13 +55,13 @@ export function ResultsPage({
       />
 
       {/* Reset */}
-      <div className="mt-20 text-center">
+      <div className="mt-18 flex justify-center">
         <button
           type="button"
           onClick={onReset}
-          className="group inline-flex items-center gap-2 rounded-pill border border-dark/10 px-5 py-2.5 text-sm font-medium text-dark-muted transition-all duration-200 hover:border-primary/30 hover:text-primary hover:shadow-card"
+          className="group inline-flex items-center gap-2 rounded-full border border-neutral-200 px-4 py-2 text-body-sm text-neutral-400 transition-all duration-200 hover:border-neutral-300 hover:text-neutral-600"
         >
-          <RotateCcw className="h-4 w-4 transition-transform duration-300 group-hover:-rotate-180" aria-hidden="true" />
+          <RotateCcw className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-rotate-180" aria-hidden="true" />
           Volver a hacer el test
         </button>
       </div>

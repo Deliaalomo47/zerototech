@@ -1,63 +1,45 @@
 import { useEffect, useState } from "react";
-import { Sparkles, Compass, Rocket } from "lucide-react";
 
-const loadingStages = [
-  { message: "Estamos descubriendo qué área IT puede gustarte...", icon: Compass, emoji: "🔍" },
-  { message: "Preparando tu ruta personalizada...", icon: Sparkles, emoji: "✨" },
-  { message: "Ya casi terminamos...", icon: Rocket, emoji: "🚀" },
+const messages = [
+  "Analizando tus respuestas...",
+  "Encontrando tu camino...",
+  "Casi listo...",
 ];
 
 /**
- * Pantalla de carga — rediseño v2.
+ * Loader — v3.
  *
- * - Animación más sofisticada (orbs flotantes + shimmer)
- * - Mensajes rotativos con transición suave
- * - Barra de progreso con gradiente
- * - Ícono central con efecto de glow pulsante
- * - Se siente como un momento de anticipación positiva
+ * Raycast-inspired: clean, focused, no clutter.
+ * Rotating message + minimal progress bar.
  */
 export function DiscoveryLoader() {
-  const [stage, setStage] = useState(0);
+  const [idx, setIdx] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setStage((prev) => (prev + 1) % loadingStages.length);
-    }, 2000);
-    return () => clearInterval(interval);
+    const timer = setInterval(() => {
+      setIdx((prev) => (prev + 1) % messages.length);
+    }, 1800);
+    return () => clearInterval(timer);
   }, []);
 
-  const current = loadingStages[stage];
-  const Icon = current.icon;
-
   return (
-    <div className="flex min-h-[55vh] flex-col items-center justify-center text-center animate-fadeInUp">
-      {/* Orbs decorativos */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-        <div className="absolute left-1/4 top-1/3 h-40 w-40 rounded-full bg-violet/8 blur-[80px] animate-float" />
-        <div className="absolute right-1/4 bottom-1/3 h-32 w-32 rounded-full bg-secondary/10 blur-[60px] animate-float [animation-delay:1.5s]" />
+    <div className="flex min-h-[50vh] flex-col items-center justify-center text-center animate-fade-up">
+      {/* Pulsing dot */}
+      <div className="mb-8 flex h-12 w-12 items-center justify-center rounded-2xl bg-neutral-900">
+        <div className="h-2.5 w-2.5 rounded-full bg-white animate-pulse-soft" />
       </div>
 
-      {/* Ícono central con glow */}
-      <div className="relative mb-10">
-        <div className="absolute inset-0 rounded-full bg-primary/20 blur-2xl animate-pulseGlow" aria-hidden="true" />
-        <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-surface shadow-elevated">
-          <Icon className="h-10 w-10 text-primary" aria-hidden="true" />
-        </div>
-      </div>
-
-      {/* Título */}
-      <h2 className="mb-5 font-display text-2xl font-bold text-dark sm:text-3xl">
-        Calculando tu perfil...
-      </h2>
-
-      {/* Mensaje rotativo */}
-      <p className="mb-8 text-lg text-dark-soft animate-fadeIn" key={stage} aria-live="polite">
-        {current.emoji} {current.message}
+      {/* Message */}
+      <p className="mb-3 font-display text-display-sm text-neutral-900">
+        Calculando tu perfil
+      </p>
+      <p className="text-body-sm text-neutral-400" key={idx} aria-live="polite">
+        {messages[idx]}
       </p>
 
-      {/* Barra de progreso con gradiente */}
-      <div className="h-2 w-72 overflow-hidden rounded-pill bg-canvas-deep/60">
-        <div className="h-full w-1/3 rounded-pill bg-route animate-slideLoader" />
+      {/* Progress bar */}
+      <div className="mt-8 h-1 w-48 overflow-hidden rounded-full bg-neutral-100">
+        <div className="h-full w-1/4 rounded-full bg-neutral-900 animate-slide-loader" />
       </div>
     </div>
   );

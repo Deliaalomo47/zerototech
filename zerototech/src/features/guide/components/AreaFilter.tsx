@@ -4,16 +4,15 @@ import type { ITCategory } from "@/features/discovery/types";
 interface FilterOption {
   value: ITCategory | "all";
   label: string;
-  emoji: string;
 }
 
 const filters: FilterOption[] = [
-  { value: "all", label: "Todos", emoji: "🌐" },
-  { value: "soporte", label: "Soporte", emoji: "🔧" },
-  { value: "cloud", label: "Cloud", emoji: "☁️" },
-  { value: "ciberseguridad", label: "Ciberseguridad", emoji: "🛡️" },
-  { value: "ux-ui", label: "UX/UI", emoji: "🎨" },
-  { value: "desarrollo", label: "Desarrollo", emoji: "💻" },
+  { value: "all", label: "Todos" },
+  { value: "soporte", label: "Soporte" },
+  { value: "cloud", label: "Cloud" },
+  { value: "ciberseguridad", label: "Seguridad" },
+  { value: "ux-ui", label: "UX/UI" },
+  { value: "desarrollo", label: "Dev" },
 ];
 
 interface AreaFilterProps {
@@ -22,19 +21,17 @@ interface AreaFilterProps {
 }
 
 /**
- * Filtro por áreas — rediseño v2.
+ * Area filter — v3.
  *
- * - Pills con bordes más suaves y backdrop blur
- * - Estado activo con gradiente de fondo
- * - Mejor espaciado y peso visual
- * - Scroll horizontal en mobile con hide scrollbar
+ * Arc/Linear-inspired: tab-like pills, no emojis (cleaner),
+ * subtle active state with dark bg.
  */
 export function AreaFilter({ selected, onChange }: AreaFilterProps) {
   return (
     <div
-      className="flex flex-wrap justify-center gap-2 sm:gap-2.5"
+      className="inline-flex items-center gap-1 rounded-xl bg-neutral-100 p-1"
       role="radiogroup"
-      aria-label="Filtrar por área IT"
+      aria-label="Filtrar por área"
     >
       {filters.map((filter) => (
         <button
@@ -44,14 +41,13 @@ export function AreaFilter({ selected, onChange }: AreaFilterProps) {
           aria-checked={selected === filter.value}
           onClick={() => onChange(filter.value)}
           className={cn(
-            "inline-flex items-center gap-2 rounded-pill px-4 py-2.5 text-sm font-semibold transition-all duration-300 ease-out-expo",
+            "rounded-lg px-3.5 py-1.5 text-body-sm font-medium transition-all duration-200 ease-out-expo",
             selected === filter.value
-              ? "bg-route text-white shadow-soft scale-[1.02]"
-              : "border border-dark/8 bg-surface text-dark-soft shadow-card hover:border-primary/20 hover:text-dark hover:shadow-card-hover hover:-translate-y-0.5"
+              ? "bg-neutral-900 text-white shadow-sm"
+              : "text-neutral-500 hover:text-neutral-700"
           )}
         >
-          <span aria-hidden="true" className="text-base">{filter.emoji}</span>
-          <span>{filter.label}</span>
+          {filter.label}
         </button>
       ))}
     </div>

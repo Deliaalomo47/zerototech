@@ -1,4 +1,3 @@
-import { Briefcase, Search, Wrench } from "lucide-react";
 import type { RoleCardData } from "../types";
 
 interface RoleCardProps {
@@ -6,53 +5,40 @@ interface RoleCardProps {
 }
 
 /**
- * Tarjeta "Un día en la vida de..." — rediseño v2.
+ * Role card — v3.
  *
- * - Layout más limpio con secciones bien definidas
- * - Emoji más grande con fondo canvas
- * - Herramientas como pills con gradiente sutil
- * - LinkedIn tip con borde acentuado a la izquierda
- * - Transición más suave y elevación orgánica
+ * Notion-inspired: clean surface, structured content sections,
+ * no heavy decorations. Information density over visual noise.
  */
 export function RoleCard({ role }: RoleCardProps) {
   return (
-    <article className="group animate-fadeInUp rounded-card-lg border border-white/60 bg-surface p-6 shadow-card transition-all duration-300 ease-out-expo hover:-translate-y-1 hover:shadow-card-hover sm:p-8">
+    <article className="rounded-xl border border-neutral-200 bg-surface p-6 transition-all duration-200 hover:border-neutral-300 hover:shadow-md">
       {/* Header */}
-      <div className="mb-5 flex items-start gap-4">
-        {/* Emoji con fondo */}
-        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-canvas-deep text-3xl">
-          <span aria-hidden="true">{role.emoji}</span>
-        </div>
-        <div className="min-w-0 pt-1">
-          <h3 className="font-display text-lg font-bold text-dark sm:text-xl">
+      <div className="mb-4 flex items-center gap-3">
+        <span className="text-2xl" aria-hidden="true">{role.emoji}</span>
+        <div>
+          <h3 className="text-body-sm font-semibold text-neutral-900">
             {role.roleName}
           </h3>
-          <p className="text-sm font-medium text-primary">Un día en la vida de...</p>
+          <p className="text-caption text-primary">Un día en la vida de...</p>
         </div>
       </div>
 
-      {/* Día típico */}
-      <div className="mb-5">
-        <div className="mb-2 flex items-center gap-2">
-          <Briefcase className="h-4 w-4 text-primary" aria-hidden="true" />
-          <span className="text-xs font-bold uppercase tracking-wider text-dark-muted">Día típico</span>
-        </div>
-        <p className="text-sm leading-relaxed text-dark-soft sm:text-[0.94rem]">
-          {role.dailyLife}
+      {/* Daily life */}
+      <p className="mb-4 text-body-sm leading-relaxed text-neutral-500">
+        {role.dailyLife}
+      </p>
+
+      {/* Tools */}
+      <div className="mb-4">
+        <p className="mb-2 text-caption font-semibold uppercase tracking-wider text-neutral-400">
+          Herramientas
         </p>
-      </div>
-
-      {/* Herramientas */}
-      <div className="mb-5">
-        <div className="mb-2.5 flex items-center gap-2">
-          <Wrench className="h-4 w-4 text-teal" aria-hidden="true" />
-          <span className="text-xs font-bold uppercase tracking-wider text-dark-muted">Herramientas</span>
-        </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5">
           {role.tools.map((tool) => (
             <span
               key={tool}
-              className="rounded-pill border border-teal/15 bg-teal-light px-3 py-1 text-xs font-semibold text-dark sm:text-sm"
+              className="rounded-md bg-neutral-100 px-2 py-0.5 text-caption font-medium text-neutral-600"
             >
               {tool}
             </span>
@@ -60,13 +46,12 @@ export function RoleCard({ role }: RoleCardProps) {
         </div>
       </div>
 
-      {/* LinkedIn tip — con borde lateral accent */}
-      <div className="rounded-xl border-l-4 border-accent bg-accent-light/60 py-3.5 pl-4 pr-4">
-        <div className="mb-1 flex items-center gap-2">
-          <Search className="h-3.5 w-3.5 text-accent-dark" aria-hidden="true" />
-          <span className="text-xs font-bold uppercase tracking-wider text-accent-dark">Primer empleo</span>
-        </div>
-        <p className="text-sm text-dark-soft">{role.linkedInTip}</p>
+      {/* LinkedIn tip */}
+      <div className="border-t border-neutral-100 pt-4">
+        <p className="text-caption text-neutral-400">
+          <span className="font-semibold text-neutral-500">LinkedIn:</span>{" "}
+          {role.linkedInTip}
+        </p>
       </div>
     </article>
   );

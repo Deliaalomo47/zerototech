@@ -1,43 +1,37 @@
 import { Rocket } from "lucide-react";
 
 /**
- * Header — primera pieza de contacto visual.
+ * Header — v3.
  *
- * Rediseño v2:
- * - Fondo glassmorphism sutil con backdrop-blur para profundidad
- * - Logo con gradiente que refleja la identidad de marca
- * - Sticky para acompañar al usuario en todo el scroll
- * - Transición suave al hacer scroll (se solidifica)
+ * Linear-inspired: minimal, single-line, no noise.
+ * Sticky with a 1px gradient border that fades at edges.
+ * Logo as a tight wordmark with icon. No extra badges or clutter.
  */
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/50 bg-background/70 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
+    <header className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-xl">
+      {/* Bottom border — gradient that fades at edges */}
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
+
+      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-5 sm:px-6">
         {/* Logo */}
         <a
           href="/"
-          className="group flex items-center gap-2.5"
+          className="group flex items-center gap-2"
           aria-label="ZeroToTech — Inicio"
         >
-          {/* Ícono con fondo gradiente */}
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-route shadow-soft transition-transform duration-300 group-hover:scale-105 group-hover:shadow-glow">
-            <Rocket className="h-[18px] w-[18px] text-white" aria-hidden="true" />
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-brand">
+            <Rocket className="h-3.5 w-3.5 text-white" aria-hidden="true" />
           </div>
-
-          {/* Wordmark */}
-          <span className="font-display text-xl font-extrabold tracking-tight text-dark sm:text-[1.35rem]">
-            Zero
-            <span className="text-gradient">To</span>
-            Tech
+          <span className="font-display text-[1.1rem] font-extrabold tracking-tight text-neutral-900">
+            Zero<span className="text-gradient">To</span>Tech
           </span>
         </a>
 
-        {/* Badge motivador — solo visible en desktop */}
-        <div className="hidden items-center gap-2 rounded-pill border border-primary/10 bg-primary-50 px-3.5 py-1.5 sm:flex">
-          <span className="h-1.5 w-1.5 rounded-full bg-success animate-pulseGlow" aria-hidden="true" />
-          <span className="text-xs font-semibold text-primary">
-            Tu camino IT empieza acá
-          </span>
+        {/* Minimal status indicator */}
+        <div className="flex items-center gap-2 text-body-sm text-neutral-500">
+          <span className="hidden sm:inline">Tu camino IT</span>
+          <div className="h-1.5 w-1.5 rounded-full bg-success animate-pulse-soft" aria-hidden="true" />
         </div>
       </div>
     </header>

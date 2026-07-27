@@ -7,12 +7,10 @@ interface XPTrackerProps {
 }
 
 /**
- * Barra de progreso del quiz — rediseño v2.
+ * Progress bar — v3.
  *
- * - Indicadores de paso como dots interactivos
- * - Barra con gradiente animado (no color plano)
- * - Texto más cálido y legible
- * - Micro-animación al avanzar
+ * Linear-inspired: minimal, precise, informative.
+ * Segmented dots show steps, thin bar shows progress.
  */
 export function XPTracker({ current, total, className }: XPTrackerProps) {
   const progress = Math.round((current / total) * 100);
@@ -24,34 +22,30 @@ export function XPTracker({ current, total, className }: XPTrackerProps) {
       aria-valuenow={progress}
       aria-valuemin={0}
       aria-valuemax={100}
-      aria-label={`Progreso: pregunta ${current} de ${total}`}
+      aria-label={`Pregunta ${current} de ${total}`}
     >
-      {/* Step dots + text */}
       <div className="mb-3 flex items-center justify-between">
-        <div className="flex items-center gap-1.5">
+        {/* Step indicators */}
+        <div className="flex items-center gap-1">
           {Array.from({ length: total }, (_, i) => (
             <div
               key={i}
               className={cn(
-                "h-2 rounded-pill transition-all duration-400 ease-out-expo",
-                i < current
-                  ? "w-6 bg-primary"
-                  : i === current
-                    ? "w-4 bg-primary/40"
-                    : "w-2 bg-dark/10"
+                "h-1.5 rounded-full transition-all duration-300 ease-out-expo",
+                i < current ? "w-5 bg-primary" : "w-1.5 bg-neutral-200"
               )}
             />
           ))}
         </div>
-        <span className="text-sm font-semibold text-dark-soft">
-          {current}/{total}
+        <span className="text-caption font-medium text-neutral-400">
+          {current} de {total}
         </span>
       </div>
 
-      {/* Main progress bar */}
-      <div className="h-2 w-full overflow-hidden rounded-pill bg-canvas-deep/60">
+      {/* Bar */}
+      <div className="h-1 w-full overflow-hidden rounded-full bg-neutral-100">
         <div
-          className="h-full rounded-pill bg-route transition-all duration-500 ease-out-expo"
+          className="h-full rounded-full bg-primary transition-all duration-500 ease-out-expo"
           style={{ width: `${progress}%` }}
         />
       </div>

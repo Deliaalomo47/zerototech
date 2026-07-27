@@ -1,13 +1,7 @@
-import { Wrench, Cloud, Shield, Palette, Code, type LucideIcon } from "lucide-react";
+import { Wrench, Cloud, Shield, Palette, Code, Check, type LucideIcon } from "lucide-react";
 import { cn } from "@/utils/cn";
 
-const iconMap: Record<string, LucideIcon> = {
-  Wrench,
-  Cloud,
-  Shield,
-  Palette,
-  Code,
-};
+const iconMap: Record<string, LucideIcon> = { Wrench, Cloud, Shield, Palette, Code };
 
 interface OptionCardProps {
   text: string;
@@ -17,13 +11,10 @@ interface OptionCardProps {
 }
 
 /**
- * Tarjeta de opción — rediseño v2.
+ * Option card — v3.
  *
- * - Bordes más suaves y orgánicos (card radius)
- * - Efecto de selección con glow tintado
- * - Ícono con gradiente de fondo cuando activo
- * - Transición spring para el estado seleccionado
- * - Micro-lift más sutil y elegante
+ * Notion-inspired: clean surface, subtle border, precise spacing.
+ * Selected state uses ring + subtle bg shift, not heavy shadows.
  */
 export function OptionCard({ text, icon, isSelected, onSelect }: OptionCardProps) {
   const Icon = iconMap[icon] ?? Code;
@@ -33,41 +24,35 @@ export function OptionCard({ text, icon, isSelected, onSelect }: OptionCardProps
       type="button"
       onClick={onSelect}
       className={cn(
-        "group flex w-full items-center gap-4 rounded-card border-2 bg-surface p-5 text-left transition-all duration-300 ease-out-expo sm:p-6",
+        "group flex w-full items-center gap-3.5 rounded-xl border p-4 text-left transition-all duration-200 ease-out-expo",
         isSelected
-          ? "border-primary/50 shadow-glow scale-[1.01]"
-          : "border-transparent shadow-card hover:-translate-y-0.5 hover:border-primary/20 hover:shadow-card-hover"
+          ? "border-primary/40 bg-primary-subtle shadow-glow-primary"
+          : "border-neutral-200 bg-surface hover:border-neutral-300 hover:bg-neutral-50"
       )}
       aria-pressed={isSelected}
     >
-      {/* Ícono */}
+      {/* Icon */}
       <div
         className={cn(
-          "flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-all duration-300",
-          isSelected
-            ? "bg-route shadow-soft text-white"
-            : "bg-canvas-deep text-primary group-hover:bg-primary/10"
+          "flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-colors duration-200",
+          isSelected ? "bg-primary text-white" : "bg-neutral-100 text-neutral-500 group-hover:bg-neutral-200"
         )}
       >
-        <Icon className="h-5 w-5" aria-hidden="true" />
+        <Icon className="h-4 w-4" aria-hidden="true" />
       </div>
 
-      {/* Texto */}
-      <span
-        className={cn(
-          "text-sm font-medium leading-relaxed sm:text-base transition-colors duration-200",
-          isSelected ? "text-dark font-semibold" : "text-dark-soft"
-        )}
-      >
+      {/* Text */}
+      <span className={cn(
+        "flex-1 text-body-sm leading-snug",
+        isSelected ? "text-neutral-900 font-medium" : "text-neutral-600"
+      )}>
         {text}
       </span>
 
-      {/* Check indicator */}
+      {/* Check */}
       {isSelected && (
-        <div className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary animate-scaleIn">
-          <svg className="h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
+        <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary animate-scale-in">
+          <Check className="h-3 w-3 text-white" strokeWidth={3} aria-hidden="true" />
         </div>
       )}
     </button>

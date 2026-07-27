@@ -1,16 +1,13 @@
 import { useState, useMemo } from "react";
-import { BookOpen, Users, Compass } from "lucide-react";
 import type { ITCategory } from "@/features/discovery/types";
 import { rolesData, glossaryData } from "./data";
 import { AreaFilter, RoleCard, GlossaryTerm } from "./components";
 
 /**
- * Sección 4: Guía de Roles + Glosario — rediseño v2.
+ * Guide section — v3.
  *
- * - Header de sección con ícono decorativo y gradiente
- * - Subtítulos de subsección más elegantes
- * - Más espacio entre bloques
- * - Mejor ritmo visual con animaciones
+ * Notion/Linear-inspired: content-first, no decorative icons on headers,
+ * tight grid, segmented tab filter, clean separation between subsections.
  */
 export function GuideSection() {
   const [selectedArea, setSelectedArea] = useState<ITCategory | "all">("all");
@@ -22,86 +19,66 @@ export function GuideSection() {
 
   const filteredTerms = useMemo(() => {
     if (selectedArea === "all") return glossaryData;
-    return glossaryData.filter((term) =>
-      term.categories.includes(selectedArea)
-    );
+    return glossaryData.filter((term) => term.categories.includes(selectedArea));
   }, [selectedArea]);
 
   return (
     <section
       id="guide-section"
-      className="mx-auto max-w-6xl px-5 py-20 sm:px-8 lg:px-10"
-      aria-label="Guía de roles y glosario IT"
+      className="mx-auto max-w-5xl px-5 py-18 sm:px-6"
+      aria-label="Guía de roles y glosario"
     >
-      {/* Section header */}
-      <div className="mb-12 text-center animate-fadeInUp">
-        <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-route shadow-soft">
-          <Compass className="h-7 w-7 text-white" aria-hidden="true" />
-        </div>
-        <h2 className="mb-3 font-display text-section font-bold text-dark">
-          Conocé el mundo IT por dentro
+      {/* Header */}
+      <div className="mb-8 animate-fade-up">
+        <h2 className="font-display text-display-md text-neutral-900">
+          Conocé el mundo IT
         </h2>
-        <p className="mx-auto max-w-xl text-lg text-dark-soft">
-          Descubrí qué hace cada rol en la vida real y aprendé la jerga sin
-          morir en el intento.
+        <p className="mt-2 text-body-md text-neutral-500">
+          Qué hace cada rol, qué herramientas usa y cómo hablan entre ellos.
         </p>
       </div>
 
-      {/* Filtro */}
-      <div className="mb-12 animate-fadeInUp-delay-1">
+      {/* Filter */}
+      <div className="mb-10 animate-fade-up-1">
         <AreaFilter selected={selectedArea} onChange={setSelectedArea} />
       </div>
 
-      {/* --- Roles --- */}
-      <div className="mb-18">
-        <div className="mb-8 flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
-            <Users className="h-5 w-5 text-primary" aria-hidden="true" />
-          </div>
-          <h3 className="font-display text-xl font-bold text-dark sm:text-2xl">
-            Un día en la vida de...
-          </h3>
-        </div>
-
+      {/* Roles */}
+      <div className="mb-15">
+        <h3 className="mb-5 text-body-sm font-semibold uppercase tracking-wider text-neutral-400">
+          Roles
+        </h3>
         {filteredRoles.length > 0 ? (
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-2">
             {filteredRoles.map((role) => (
               <RoleCard key={role.id} role={role} />
             ))}
           </div>
         ) : (
-          <div className="rounded-card bg-canvas-soft p-10 text-center">
-            <p className="text-dark-muted">No hay roles para esta categoría aún.</p>
-          </div>
+          <p className="rounded-xl border border-neutral-200 p-8 text-center text-body-sm text-neutral-400">
+            No hay roles para esta categoría.
+          </p>
         )}
       </div>
 
-      {/* --- Glosario --- */}
+      {/* Glossary */}
       <div>
-        <div className="mb-6 flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-violet-light">
-            <BookOpen className="h-5 w-5 text-violet" aria-hidden="true" />
-          </div>
-          <div>
-            <h3 className="font-display text-xl font-bold text-dark sm:text-2xl">
-              Traductor de Jerga IT
-            </h3>
-            <p className="text-sm text-dark-muted">
-              Tocá o pasá el mouse sobre un término para ver su explicación.
-            </p>
-          </div>
-        </div>
-
+        <h3 className="mb-2 text-body-sm font-semibold uppercase tracking-wider text-neutral-400">
+          Glosario
+        </h3>
+        <p className="mb-5 text-body-sm text-neutral-400">
+          Hacé clic en un término para ver su explicación.
+        </p>
         {filteredTerms.length > 0 ? (
-          <div className="flex flex-wrap gap-2.5">
+          <div className="flex flex-wrap gap-2">
             {filteredTerms.map((term) => (
               <GlossaryTerm key={term.id} term={term} />
             ))}
           </div>
         ) : (
-          <div className="rounded-card bg-canvas-soft p-10 text-center">
-            <p className="text-dark-muted">No hay términos para esta categoría aún.</p>
-          </div>
+          <p className="rounded-xl border border-neutral-200 p-8 text-center text-body-sm text-neutral-400">
+            No hay términos para esta categoría.
+          </p>
         )}
       </div>
     </section>
