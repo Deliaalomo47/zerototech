@@ -1,25 +1,57 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Paleta ZeroToTech
- * Basada en el recorrido de colores del logo: del coral cálido (el punto de partida)
- * al violeta (la meta). Cada color representa una "parada" del camino.
+ * ZeroToTech — Design System
+ *
+ * Paleta oficial (v1) basada en la guía de marca:
+ * - Primary: Azul confianza (#3C82F6)
+ * - Secondary: Menta (#7FFFD0) para progreso y elementos positivos
+ * - Accent: Peach (#FFD6A5) para logros e insignias
+ * - Dark: Índigo oscuro (#2C1E4A) para texto, header y footer
+ * - Background: Fondo claro (#F8FAFC)
+ * - Surface: Blanco (#FFFFFF) para tarjetas y modales
+ * - Success: Verde (#3ECF8E) para acciones completadas
+ * - Warning: Dorado (#F4B942) para XP y recompensas
  */
 export default {
   content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        // Fondo cálido y neutro, nunca blanco puro ni corporativo.
+        // --- Paleta oficial del Design System ---
+        primary: {
+          DEFAULT: "#3C82F6",
+          light: "#DBEAFE",
+          dark: "#1E40AF",
+        },
+        secondary: {
+          DEFAULT: "#7FFFD0",
+          light: "#CCFFF0",
+          dark: "#059669",
+        },
+        accent: {
+          DEFAULT: "#FFD6A5",
+          light: "#FFF0DB",
+          dark: "#D97706",
+        },
+        dark: {
+          DEFAULT: "#2C1E4A",
+          soft: "#5B5470",
+        },
+        background: "#F8FAFC",
+        surface: "#FFFFFF",
+        success: "#3ECF8E",
+        warning: "#F4B942",
+
+        // --- Paleta secundaria (ruta visual del logo) ---
         canvas: {
-          DEFAULT: "#FBFAF7",
+          DEFAULT: "#F8FAFC",
           soft: "#F5F2FC",
         },
         ink: {
-          DEFAULT: "#2B2440", // texto principal, violeta muy oscuro (no negro puro)
+          DEFAULT: "#2C1E4A",
           soft: "#5B5470",
         },
-        // Colores "parada del camino", en el orden en que aparecen en el logo.
         coral: {
           DEFAULT: "#F4A26E",
           light: "#FBD3AE",
@@ -42,23 +74,42 @@ export default {
         },
       },
       fontFamily: {
-        // Display: redondeada y amigable, como los nodos circulares del logo.
         display: ["'Baloo 2'", "system-ui", "sans-serif"],
-        // Texto: moderna, neutra y muy legible.
         body: ["'Plus Jakarta Sans'", "system-ui", "sans-serif"],
       },
       borderRadius: {
+        btn: "1rem", // 16px — botones
+        "btn-lg": "1.25rem", // 20px — botones grandes
+        card: "1.25rem", // 20px — tarjetas
         xl: "1.25rem",
         "2xl": "1.75rem",
         pill: "999px",
       },
       boxShadow: {
         soft: "0 8px 30px -12px rgba(43, 36, 64, 0.18)",
+        card: "0 4px 20px -8px rgba(43, 36, 64, 0.10)",
+        "card-hover": "0 12px 36px -12px rgba(43, 36, 64, 0.20)",
       },
       backgroundImage: {
-        // El gradiente "de camino" del logo: coral -> rosa -> violeta.
         route: "linear-gradient(90deg, #F4A26E 0%, #EA5FA0 45%, #9B5DE0 100%)",
         "route-cool": "linear-gradient(90deg, #3FBFA8 0%, #5B8DEF 100%)",
+      },
+      transitionDuration: {
+        DEFAULT: "200ms",
+      },
+      keyframes: {
+        fadeInUp: {
+          "0%": { opacity: "0", transform: "translateY(16px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        slideLoader: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(300%)" },
+        },
+      },
+      animation: {
+        fadeInUp: "fadeInUp 0.4s ease-out both",
+        slideLoader: "slideLoader 1.5s ease-in-out infinite",
       },
     },
   },
