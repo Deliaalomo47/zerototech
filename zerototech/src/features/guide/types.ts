@@ -1,19 +1,27 @@
 import type { ITCategory } from "@/features/discovery/types";
 
 /**
- * Tarjeta de rol: "Un día en la vida de..."
+ * Datos de un rol IT — información estructurada y útil.
  */
 export interface RoleCardData {
   id: string;
   category: ITCategory;
   roleName: string;
   emoji: string;
-  /** Qué hace esta persona en un día típico */
-  dailyLife: string;
-  /** Herramientas que usa */
-  tools: string[];
-  /** Qué buscar en LinkedIn para el primer empleo */
-  linkedInTip: string;
+  /** Qué hace este rol */
+  whatTheyDo: string;
+  /** Qué problemas resuelve */
+  problemsSolved: string;
+  /** Tecnologías que utiliza */
+  technologies: string[];
+  /** Habilidades recomendadas */
+  skills: string[];
+  /** Nivel de entrada */
+  entryLevel: string;
+  /** Cómo seguir aprendiendo */
+  howToLearn: string;
+  /** Empresas donde suele trabajar */
+  companies: string[];
 }
 
 /**
@@ -22,8 +30,6 @@ export interface RoleCardData {
 export interface GlossaryTermData {
   id: string;
   term: string;
-  /** Definición simple, "explicada con manzanas" */
   definition: string;
-  /** Categorías relacionadas (para filtrar) */
   categories: ITCategory[];
 }

@@ -1,8 +1,8 @@
 import type { RoleCardData } from "../types";
 
 /**
- * Datos de los roles IT explicados de forma cercana.
- * Cada uno describe un día típico, herramientas y cómo buscar trabajo.
+ * Datos de roles IT — información útil y atemporal.
+ * Eliminado "Un día en la vida de..." — reemplazado por datos estructurados.
  */
 export const rolesData: RoleCardData[] = [
   // --- SOPORTE ---
@@ -11,20 +11,26 @@ export const rolesData: RoleCardData[] = [
     category: "soporte",
     roleName: "Analista de Help Desk",
     emoji: "🎧",
-    dailyLife:
-      "Arrancás el día revisando tickets de usuarios que tienen problemas: una notebook que no prende, un mail que no llega, una impresora rebelde. Investigás, resolvés y le explicás al usuario qué pasó. Es como ser detective digital.",
-    tools: ["Jira / Zendesk", "Windows/Linux", "Active Directory", "TeamViewer"],
-    linkedInTip: "Buscá: 'Help Desk Analyst', 'IT Support Technician', 'Soporte Técnico N1'",
+    whatTheyDo: "Resuelve problemas técnicos que tienen los usuarios de una empresa: equipos que no funcionan, software que falla, cuentas bloqueadas.",
+    problemsSolved: "Que los empleados de una empresa puedan trabajar sin interrupciones tecnológicas.",
+    technologies: ["Windows", "Linux", "Active Directory", "Jira", "Zendesk", "TeamViewer"],
+    skills: ["Comunicación clara", "Paciencia", "Resolución de problemas", "Documentación"],
+    entryLevel: "Es uno de los puntos de entrada más accesibles al mundo IT. No requiere título universitario.",
+    howToLearn: "Certificación Google IT Support, CompTIA A+, laboratorios con VirtualBox.",
+    companies: ["Globant", "Accenture", "Kyndryl", "IBM", "Deloitte"],
   },
   {
     id: "role-soporte-sysadmin",
     category: "soporte",
     roleName: "SysAdmin Junior",
     emoji: "🖥️",
-    dailyLife:
-      "Tu día es mantener servidores saludables, instalar actualizaciones, gestionar cuentas de usuarios y asegurarte de que nada se caiga. Cuando algo falla a las 3am... sí, puede que te llamen. Pero el resto del tiempo es resolver puzzles técnicos.",
-    tools: ["PowerShell / Bash", "Active Directory", "VMware", "Monitoring (Nagios/Zabbix)"],
-    linkedInTip: "Buscá: 'Junior SysAdmin', 'Administrador de Sistemas', 'IT Administrator'",
+    whatTheyDo: "Mantiene los servidores y la infraestructura de red de una empresa funcionando correctamente.",
+    problemsSolved: "Que los sistemas internos estén disponibles 24/7 y que nadie pierda datos.",
+    technologies: ["Linux/Windows Server", "PowerShell", "Bash", "VMware", "Nagios", "Ansible"],
+    skills: ["Pensamiento sistemático", "Atención al detalle", "Automatización", "Documentación"],
+    entryLevel: "Requiere conocimientos básicos de redes y sistemas operativos. Accesible con certificaciones.",
+    howToLearn: "Linux desde cero, laboratorios virtuales, certificación LPIC-1 o RHCSA.",
+    companies: ["Kyndryl", "IBM", "Oracle", "Mercado Libre", "Deloitte"],
   },
 
   // --- CLOUD ---
@@ -33,20 +39,26 @@ export const rolesData: RoleCardData[] = [
     category: "cloud",
     roleName: "Cloud Engineer Junior",
     emoji: "☁️",
-    dailyLife:
-      "Creás y mantenés infraestructura en la nube: servidores virtuales, bases de datos, redes. Todo con código (Infrastructure as Code). Es como jugar con Lego pero los bloques son servicios de AWS o Azure.",
-    tools: ["AWS / Azure / GCP", "Terraform", "Docker", "Linux", "CI/CD pipelines"],
-    linkedInTip: "Buscá: 'Junior Cloud Engineer', 'DevOps Trainee', 'Cloud Support Associate'",
+    whatTheyDo: "Diseña, despliega y mantiene infraestructura en la nube (AWS, Azure, GCP) usando código.",
+    problemsSolved: "Que las aplicaciones escalen automáticamente y funcionen de forma confiable sin servidores físicos.",
+    technologies: ["AWS/Azure/GCP", "Terraform", "Docker", "Linux", "CI/CD", "Python"],
+    skills: ["Automatización", "Pensamiento en sistemas", "Resolución de problemas", "Aprendizaje continuo"],
+    entryLevel: "Requiere base en Linux y redes. Las certificaciones cloud son muy valoradas.",
+    howToLearn: "AWS Cloud Practitioner, AZ-900, laboratorios con free tier, Docker desde cero.",
+    companies: ["AWS", "Microsoft", "Mercado Libre", "Globant", "Pomelo"],
   },
   {
     id: "role-cloud-devops",
     category: "cloud",
     roleName: "DevOps Trainee",
     emoji: "🔄",
-    dailyLife:
-      "Tu misión es que el código de los programadores llegue a producción rápido y sin romperse. Armás pipelines de despliegue, automatizás pruebas y monitoreas que todo funcione 24/7.",
-    tools: ["GitHub Actions / Jenkins", "Docker / Kubernetes", "Terraform", "Grafana"],
-    linkedInTip: "Buscá: 'DevOps Junior', 'Site Reliability Engineer Intern', 'Platform Engineer Trainee'",
+    whatTheyDo: "Conecta el desarrollo con las operaciones: automatiza despliegues, monitorea sistemas y mejora la velocidad de entrega.",
+    problemsSolved: "Que el código llegue a producción rápido, seguro y sin errores manuales.",
+    technologies: ["GitHub Actions", "Jenkins", "Docker", "Kubernetes", "Terraform", "Grafana"],
+    skills: ["Automatización", "Scripting", "Colaboración entre equipos", "Mentalidad de mejora continua"],
+    entryLevel: "Requiere conocimientos de Linux, Git y al menos un lenguaje de scripting.",
+    howToLearn: "Automatizar un deploy con GitHub Actions, certificación AWS DevOps, práctica con contenedores.",
+    companies: ["Mercado Libre", "Globant", "Pomelo", "Despegar", "Ualá"],
   },
 
   // --- CIBERSEGURIDAD ---
@@ -55,20 +67,26 @@ export const rolesData: RoleCardData[] = [
     category: "ciberseguridad",
     roleName: "Analista SOC Junior",
     emoji: "🕵️",
-    dailyLife:
-      "Monitoreás alertas de seguridad todo el día: ¿alguien intentó entrar sin permiso? ¿Hay tráfico sospechoso? Investigás incidentes y escribís reportes. Es como ser guardia de seguridad digital, pero mucho más interesante.",
-    tools: ["SIEM (Splunk/QRadar)", "Wireshark", "OSINT tools", "Firewalls"],
-    linkedInTip: "Buscá: 'SOC Analyst L1', 'Junior Security Analyst', 'Analista de Ciberseguridad'",
+    whatTheyDo: "Monitorea alertas de seguridad, investiga incidentes y protege los sistemas de una empresa contra ataques.",
+    problemsSolved: "Detectar intrusiones y amenazas antes de que causen daño real.",
+    technologies: ["SIEM (Splunk/QRadar)", "Wireshark", "OSINT", "Firewalls", "EDR"],
+    skills: ["Atención al detalle", "Pensamiento analítico", "Curiosidad", "Comunicación escrita"],
+    entryLevel: "Accesible con certificación Google Cybersecurity o CompTIA Security+.",
+    howToLearn: "TryHackMe, Google Cybersecurity Certificate, laboratorios de análisis de tráfico.",
+    companies: ["IBM", "Deloitte", "EY", "Kyndryl", "Accenture"],
   },
   {
     id: "role-ciber-pentester",
     category: "ciberseguridad",
     roleName: "Pentester Junior",
     emoji: "🏴‍☠️",
-    dailyLife:
-      "Te pagan por intentar hackear empresas (legalmente). Buscás vulnerabilidades en sus sistemas, escribís reportes con lo que encontraste y les ayudás a mejorar su seguridad. Cada día es un reto nuevo.",
-    tools: ["Kali Linux", "Burp Suite", "Nmap", "Metasploit", "Python"],
-    linkedInTip: "Buscá: 'Junior Penetration Tester', 'Ethical Hacker', 'Security Consultant Intern'",
+    whatTheyDo: "Intenta hackear sistemas de forma legal para encontrar vulnerabilidades antes que los atacantes reales.",
+    problemsSolved: "Que las empresas conozcan sus debilidades de seguridad y puedan corregirlas.",
+    technologies: ["Kali Linux", "Burp Suite", "Nmap", "Metasploit", "Python", "OWASP"],
+    skills: ["Creatividad", "Persistencia", "Pensamiento lateral", "Documentación técnica"],
+    entryLevel: "Requiere base sólida en redes, Linux y al menos un lenguaje. Rol más demandado que ofertado.",
+    howToLearn: "HackTheBox, PortSwigger Academy, certificación eJPT, CTF competitions.",
+    companies: ["Globant", "Deloitte", "EY", "Consultoras de seguridad independientes"],
   },
 
   // --- UX/UI ---
@@ -77,20 +95,26 @@ export const rolesData: RoleCardData[] = [
     category: "ux-ui",
     roleName: "Diseñador/a UX Junior",
     emoji: "🎨",
-    dailyLife:
-      "Investigás cómo piensan y sienten los usuarios: hacés entrevistas, creás wireframes, probás prototipos y medís si la gente entiende la interfaz. Tu trabajo es que usar una app se sienta fácil y agradable.",
-    tools: ["Figma", "Miro / FigJam", "Maze (testing)", "Notion"],
-    linkedInTip: "Buscá: 'UX Designer Junior', 'Product Designer Trainee', 'Diseñador de Experiencia'",
+    whatTheyDo: "Investiga a los usuarios, diseña flujos y prototipos, y valida que las interfaces sean fáciles de usar.",
+    problemsSolved: "Que los productos digitales sean intuitivos y resuelvan necesidades reales de las personas.",
+    technologies: ["Figma", "Miro", "Maze", "Notion", "UserTesting"],
+    skills: ["Empatía", "Investigación", "Comunicación visual", "Iteración constante"],
+    entryLevel: "No requiere programación. Se valoran portfolios con casos de estudio bien documentados.",
+    howToLearn: "Google UX Design Certificate, rediseñar apps existentes, armar portfolio en Behance.",
+    companies: ["Mercado Libre", "Globant", "Ualá", "Despegar", "MODO"],
   },
   {
     id: "role-ui-designer",
     category: "ux-ui",
     roleName: "UI Designer",
     emoji: "✨",
-    dailyLife:
-      "Diseñás cómo se ven las pantallas: colores, tipografía, íconos, espaciados. Creás sistemas de diseño para que toda la app sea visualmente coherente. Es donde el arte se encuentra con la tecnología.",
-    tools: ["Figma", "Adobe Illustrator", "Design tokens", "Storybook"],
-    linkedInTip: "Buscá: 'UI Designer', 'Visual Designer', 'Diseñador de Interfaces'",
+    whatTheyDo: "Diseña la apariencia visual de las interfaces: colores, tipografía, espaciados, íconos y sistemas de diseño.",
+    problemsSolved: "Que los productos sean visualmente atractivos, consistentes y accesibles.",
+    technologies: ["Figma", "Adobe Illustrator", "Design Tokens", "Storybook", "CSS"],
+    skills: ["Ojo para el detalle", "Teoría del color", "Tipografía", "Sistemas de diseño"],
+    entryLevel: "Se valora portfolio visual. Complementar con conocimientos básicos de HTML/CSS ayuda mucho.",
+    howToLearn: "Estudiar design systems reales (Material, Atlassian), practicar daily UI challenges.",
+    companies: ["Mercado Libre", "Ualá", "Globant", "SAP", "Microsoft"],
   },
 
   // --- DESARROLLO ---
@@ -99,19 +123,25 @@ export const rolesData: RoleCardData[] = [
     category: "desarrollo",
     roleName: "Frontend Developer Junior",
     emoji: "💻",
-    dailyLife:
-      "Construís lo que el usuario ve y toca: botones, formularios, animaciones, páginas. Traducís diseños de Figma a código real con HTML, CSS y JavaScript. Cada vez que algo se ve lindo en una web, hubo un frontend detrás.",
-    tools: ["HTML/CSS/JS", "React / Vue", "Git & GitHub", "VS Code", "Chrome DevTools"],
-    linkedInTip: "Buscá: 'Junior Frontend Developer', 'Desarrollador Web', 'React Developer Trainee'",
+    whatTheyDo: "Construye las interfaces que los usuarios ven e interactúan: páginas web, aplicaciones, formularios, animaciones.",
+    problemsSolved: "Que los diseños se conviertan en experiencias funcionales, rápidas y accesibles.",
+    technologies: ["HTML/CSS/JS", "React/Vue/Angular", "TypeScript", "Git", "Tailwind CSS"],
+    skills: ["Atención al detalle", "Lógica", "Curiosidad", "Trabajo en equipo"],
+    entryLevel: "Uno de los puntos de entrada más populares. Portfolio con proyectos reales es clave.",
+    howToLearn: "FreeCodeCamp, The Odin Project, construir tu propio portfolio web.",
+    companies: ["Mercado Libre", "Globant", "Despegar", "Pomelo", "Ualá"],
   },
   {
     id: "role-dev-backend",
     category: "desarrollo",
     roleName: "Backend Developer Junior",
     emoji: "⚙️",
-    dailyLife:
-      "Programás la lógica que no se ve: bases de datos, APIs, autenticación, reglas de negocio. Cuando alguien hace login o compra algo online, el backend es quien procesa todo por detrás.",
-    tools: ["Node.js / Python / Java", "SQL (PostgreSQL)", "REST APIs", "Git", "Docker"],
-    linkedInTip: "Buscá: 'Junior Backend Developer', 'Desarrollador Backend', 'API Developer'",
+    whatTheyDo: "Programa la lógica del servidor: APIs, bases de datos, autenticación, procesamiento de datos.",
+    problemsSolved: "Que las aplicaciones funcionen por detrás: login, pagos, búsquedas, notificaciones.",
+    technologies: ["Node.js/Python/Java", "PostgreSQL", "REST APIs", "Docker", "Git"],
+    skills: ["Pensamiento lógico", "Estructuras de datos", "Resolución de problemas", "Trabajo con abstracciones"],
+    entryLevel: "Requiere al menos un lenguaje y conceptos de bases de datos. Proyectos API son muy valorados.",
+    howToLearn: "Construir una API REST, aprender SQL, certificación Meta Backend Developer.",
+    companies: ["Mercado Libre", "Despegar", "Pomelo", "MODO", "Ualá"],
   },
 ];
