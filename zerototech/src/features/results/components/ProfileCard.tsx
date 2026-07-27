@@ -1,3 +1,4 @@
+import { Award } from "lucide-react";
 import type { RoadmapData } from "../types";
 
 interface ProfileCardProps {
@@ -5,36 +6,30 @@ interface ProfileCardProps {
 }
 
 /**
- * Profile result card — v3.
- *
- * Clerk-inspired success state: clean, celebratory without noise.
- * Big emoji, tight copy, gradient accent line.
+ * Profile card — Noxora final.
+ * Clean celebration. Lucide icon instead of emoji.
+ * Generous whitespace, peach accent.
  */
 export function ProfileCard({ roadmap }: ProfileCardProps) {
   return (
-    <div className="animate-fade-up rounded-2xl border border-neutral-200 bg-surface p-8 text-center shadow-lg sm:p-12">
-      {/* Emoji */}
-      <div className="mb-5 text-6xl animate-float" aria-hidden="true">
-        {roadmap.roleEmoji}
+    <div className="animate-fade-up rounded-2xl border border-border bg-surface p-10 text-center shadow-card sm:p-14">
+      <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-peach-light">
+        <Award className="h-8 w-8 text-peach-dark" aria-hidden="true" />
       </div>
 
-      {/* Label */}
-      <p className="mb-3 text-caption font-semibold uppercase tracking-widest text-primary">
+      <p className="mb-3 text-small font-semibold uppercase tracking-widest text-mint-dark">
         Tu perfil descubierto
       </p>
 
-      {/* Role name */}
-      <h2 className="mb-4 font-display text-display-md text-neutral-900">
+      <h2 className="mb-5 font-display text-title text-indigo sm:text-[2.25rem]">
         {roadmap.roleName}
       </h2>
 
-      {/* Motivational message */}
-      <p className="mx-auto max-w-md text-body-md text-neutral-500">
+      <p className="mx-auto max-w-md text-body text-muted leading-relaxed">
         {roadmap.motivationalMessage}
       </p>
 
-      {/* Gradient accent line */}
-      <div className="mx-auto mt-8 h-0.5 w-16 rounded-full bg-gradient-brand" />
+      <div className="mx-auto mt-8 h-1 w-16 rounded-full bg-mint" />
     </div>
   );
 }

@@ -9,48 +9,41 @@ interface RoadmapSectionProps {
 }
 
 /**
- * Roadmap — v3.
- *
- * Clean vertical timeline. Minimal chrome.
- * Phase headers are tight labels, not heavy blocks.
+ * Roadmap — Noxora final.
+ * Airy phases, mint timeline, generous spacing.
  */
 export function RoadmapSection({ phases, isNodeCompleted, onMarkCompleted }: RoadmapSectionProps) {
   return (
-    <div className="space-y-10">
+    <div className="space-y-12">
       {phases.map((phase) => {
-        const completedInPhase = phase.nodes.filter((n) => isNodeCompleted(n.id)).length;
-        const totalInPhase = phase.nodes.length;
-        const phaseComplete = completedInPhase === totalInPhase;
+        const done = phase.nodes.filter((n) => isNodeCompleted(n.id)).length;
+        const total = phase.nodes.length;
+        const complete = done === total;
 
         return (
           <div key={phase.id} className="animate-fade-up">
-            {/* Phase header */}
-            <div className="mb-4 flex items-center gap-3">
-              <span className="text-xl" aria-hidden="true">{phase.emoji}</span>
-              <h3 className="flex-1 font-display text-body-lg font-bold text-neutral-900">
-                Fase {phase.phase}: {phase.title}
+            <div className="mb-5 flex items-center gap-3">
+              <div className={cn(
+                "flex h-10 w-10 items-center justify-center rounded-xl text-small font-bold",
+                complete ? "bg-mint text-indigo" : "bg-indigo-faint text-indigo-muted"
+              )}>
+                {phase.phase}
+              </div>
+              <h3 className="flex-1 font-display text-subtitle font-bold text-indigo">
+                {phase.title}
               </h3>
-              <span
-                className={cn(
-                  "rounded-full px-2.5 py-0.5 text-caption font-semibold",
-                  phaseComplete
-                    ? "bg-success/10 text-success"
-                    : "bg-neutral-100 text-neutral-400"
-                )}
-              >
-                {completedInPhase}/{totalInPhase}
+              <span className={cn(
+                "rounded-full px-3 py-1 text-caption font-semibold",
+                complete ? "bg-mint-light text-mint-dark" : "bg-indigo-faint text-muted"
+              )}>
+                {done}/{total}
               </span>
             </div>
 
-            {/* Nodes */}
-            <div className="space-y-2.5 border-l-2 border-neutral-100 pl-6 ml-2.5">
+            <div className="space-y-3 border-l-2 border-indigo-faint pl-7 ml-5">
               {phase.nodes.map((node) => (
-                <RoadmapNodeCard
-                  key={node.id}
-                  node={node}
-                  isCompleted={isNodeCompleted(node.id)}
-                  onMarkCompleted={onMarkCompleted}
-                />
+                <RoadmapNodeCard key={node.id} node={node}
+                  isCompleted={isNodeCompleted(node.id)} onMarkCompleted={onMarkCompleted} />
               ))}
             </div>
           </div>

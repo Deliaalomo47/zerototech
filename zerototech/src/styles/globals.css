@@ -5,17 +5,14 @@
 @layer base {
   html {
     @apply scroll-smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    @apply bg-background text-neutral-800 font-body;
-    font-feature-settings: "ss01", "ss02", "cv01";
+    @apply bg-background text-indigo font-body antialiased;
   }
 
   h1, h2, h3, h4 {
-    @apply font-display text-neutral-900;
+    @apply font-display text-indigo;
     text-wrap: balance;
   }
 
@@ -24,26 +21,12 @@
   }
 
   ::selection {
-    background-color: rgba(60, 130, 246, 0.12);
-    color: #1F2937;
+    background-color: rgba(127, 255, 208, 0.25);
+    color: #2C1E4A;
   }
 
   :focus-visible {
-    @apply outline-2 outline-primary outline-offset-2 rounded-md;
-  }
-
-  /* Subtle scrollbar (Webkit) */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  ::-webkit-scrollbar-thumb {
-    @apply rounded-full bg-neutral-200;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-neutral-300;
+    @apply outline-2 outline-offset-2 outline-indigo/30 rounded-md;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -57,15 +40,10 @@
 }
 
 @layer components {
-  /* Stagger children animation */
+  /* Stagger utility */
   .stagger > :nth-child(1) { @apply animate-fade-up; }
   .stagger > :nth-child(2) { @apply animate-fade-up-1; }
   .stagger > :nth-child(3) { @apply animate-fade-up-2; }
   .stagger > :nth-child(4) { @apply animate-fade-up-3; }
-  .stagger > :nth-child(5) { @apply animate-fade-up-4; }
-
-  /* Gradient text */
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-brand;
-  }
+  .stagger > :nth-child(5) { animation: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both; }
 }

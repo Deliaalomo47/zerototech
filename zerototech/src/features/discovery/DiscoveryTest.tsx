@@ -11,10 +11,8 @@ interface DiscoveryTestProps {
 }
 
 /**
- * Discovery Test — v3.
- *
- * Clean container, tight spacing, Notion-like card feel.
- * No heavy shadows or glass effects — just clean surfaces.
+ * Discovery Test — Noxora final.
+ * Clean card, generous padding, indigo actions.
  */
 export function DiscoveryTest({ onComplete }: DiscoveryTestProps) {
   const [phase, setPhase] = useState<QuizPhase>("quiz");
@@ -60,17 +58,16 @@ export function DiscoveryTest({ onComplete }: DiscoveryTestProps) {
 
   if (phase === "loading" || phase === "done") {
     return (
-      <section id="discovery-test" className="mx-auto max-w-xl px-5 py-18 sm:px-6" aria-label="Calculando resultado">
+      <section id="discovery-test" className="mx-auto max-w-xl px-6 py-22">
         <DiscoveryLoader />
       </section>
     );
   }
 
   return (
-    <section id="discovery-test" className="mx-auto max-w-xl px-5 py-18 sm:px-6" aria-label="Test de descubrimiento IT">
-      {/* Card */}
-      <div className="rounded-2xl border border-neutral-200 bg-surface p-6 shadow-md sm:p-8">
-        <XPTracker current={currentStep + 1} total={totalSteps} className="mb-8" />
+    <section id="discovery-test" className="mx-auto max-w-xl px-6 py-22" aria-label="Test de descubrimiento IT">
+      <div className="rounded-2xl border border-border bg-surface p-8 shadow-card sm:p-10">
+        <XPTracker current={currentStep + 1} total={totalSteps} className="mb-10" />
 
         <QuizStep
           key={currentQuestion.id}
@@ -79,16 +76,15 @@ export function DiscoveryTest({ onComplete }: DiscoveryTestProps) {
           onSelectOption={handleSelectOption}
         />
 
-        {/* Next button */}
-        <div className="mt-8 flex justify-end">
+        <div className="mt-10 flex justify-end">
           <button
             type="button"
             onClick={handleNext}
             disabled={!selectedOptionId}
-            className="group inline-flex items-center gap-2 rounded-xl bg-neutral-900 px-5 py-3 text-body-sm font-semibold text-white transition-all duration-200 ease-out-expo hover:bg-neutral-800 active:scale-[0.98] disabled:opacity-30 disabled:pointer-events-none"
+            className="group inline-flex items-center gap-2 rounded-xl bg-indigo px-6 py-3.5 text-body font-semibold text-white shadow-soft transition-all duration-300 ease-elegant hover:-translate-y-0.5 hover:shadow-card active:scale-[0.98] disabled:opacity-30 disabled:pointer-events-none"
           >
-            {currentStep < totalSteps - 1 ? "Siguiente" : "Ver resultado"}
-            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+            {currentStep < totalSteps - 1 ? "Siguiente" : "Ver mi perfil"}
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
           </button>
         </div>
       </div>

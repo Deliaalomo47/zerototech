@@ -6,10 +6,8 @@ interface MainLayoutProps {
 }
 
 /**
- * Layout — v3.
- *
- * Vercel-inspired: minimal structure, clean footer,
- * no heavy decorations. The content speaks.
+ * Layout — Noxora final.
+ * White, airy, minimal footer.
  */
 export function MainLayout({ children }: MainLayoutProps) {
   return (
@@ -17,13 +15,12 @@ export function MainLayout({ children }: MainLayoutProps) {
       <Header />
       <main>{children}</main>
 
-      {/* Footer — minimal like Vercel */}
-      <footer className="mt-22 border-t border-neutral-100">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-6 sm:px-6">
-          <p className="text-caption text-neutral-400">
+      <footer className="mt-26 border-t border-border">
+        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-8">
+          <p className="text-caption text-muted">
             ZeroToTech — Kiro AI Hackathon 2025
           </p>
-          <p className="text-caption text-neutral-300">
+          <p className="text-caption text-muted/60">
             Hecho para quienes empiezan.
           </p>
         </div>

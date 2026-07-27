@@ -11,10 +11,10 @@ interface OptionCardProps {
 }
 
 /**
- * Option card — v3.
+ * Option card — Noxora final.
  *
- * Notion-inspired: clean surface, subtle border, precise spacing.
- * Selected state uses ring + subtle bg shift, not heavy shadows.
+ * Generous padding, soft border, subtle elevation on select.
+ * No heavy shadows. Clean and inviting.
  */
 export function OptionCard({ text, icon, isSelected, onSelect }: OptionCardProps) {
   const Icon = iconMap[icon] ?? Code;
@@ -24,35 +24,30 @@ export function OptionCard({ text, icon, isSelected, onSelect }: OptionCardProps
       type="button"
       onClick={onSelect}
       className={cn(
-        "group flex w-full items-center gap-3.5 rounded-xl border p-4 text-left transition-all duration-200 ease-out-expo",
+        "group flex w-full items-center gap-4 rounded-xl border-2 p-5 text-left transition-all duration-300 ease-elegant",
         isSelected
-          ? "border-primary/40 bg-primary-subtle shadow-glow-primary"
-          : "border-neutral-200 bg-surface hover:border-neutral-300 hover:bg-neutral-50"
+          ? "border-mint bg-mint-light shadow-glow"
+          : "border-border bg-surface hover:border-indigo/15 hover:shadow-soft hover:-translate-y-px"
       )}
       aria-pressed={isSelected}
     >
-      {/* Icon */}
-      <div
-        className={cn(
-          "flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-colors duration-200",
-          isSelected ? "bg-primary text-white" : "bg-neutral-100 text-neutral-500 group-hover:bg-neutral-200"
-        )}
-      >
-        <Icon className="h-4 w-4" aria-hidden="true" />
+      <div className={cn(
+        "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg transition-all duration-300",
+        isSelected ? "bg-indigo text-mint" : "bg-indigo-faint text-indigo-muted group-hover:bg-indigo/5"
+      )}>
+        <Icon className="h-4.5 w-4.5" aria-hidden="true" />
       </div>
 
-      {/* Text */}
       <span className={cn(
-        "flex-1 text-body-sm leading-snug",
-        isSelected ? "text-neutral-900 font-medium" : "text-neutral-600"
+        "flex-1 text-body",
+        isSelected ? "text-indigo font-medium" : "text-indigo-muted"
       )}>
         {text}
       </span>
 
-      {/* Check */}
       {isSelected && (
-        <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary animate-scale-in">
-          <Check className="h-3 w-3 text-white" strokeWidth={3} aria-hidden="true" />
+        <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-mint animate-scale-in">
+          <Check className="h-3.5 w-3.5 text-indigo" strokeWidth={3} aria-hidden="true" />
         </div>
       )}
     </button>

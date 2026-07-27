@@ -1,67 +1,50 @@
 import { ArrowDown } from "lucide-react";
 
 /**
- * Hero — v3.
+ * Hero — Noxora final.
  *
- * Vercel/Framer-inspired: massive headline with tight tracking,
- * minimal copy, intentional whitespace. Dot pattern background
- * that anchors the section without being distracting.
- * One clear CTA. No badge clutter.
+ * Emotional. Generous whitespace. "Yo también puedo."
+ * No patterns, no noise. Just space and confidence.
  */
 export function HeroSection() {
-  const handleScrollToTest = () => {
-    const el = document.getElementById("discovery-test");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+  const handleScroll = () => {
+    document.getElementById("discovery-test")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <section
-      className="relative flex min-h-[88vh] flex-col items-center justify-center px-5 text-center"
+      className="flex min-h-[85vh] flex-col items-center justify-center px-6 text-center"
       aria-labelledby="hero-title"
     >
-      {/* Dot grid background */}
-      <div
-        className="pointer-events-none absolute inset-0 bg-dot-pattern bg-dot-sm opacity-40"
-        aria-hidden="true"
-      />
-      {/* Radial gradient overlay */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-hero" aria-hidden="true" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-warm" aria-hidden="true" />
-
-      {/* Content */}
-      <div className="relative z-10 mx-auto max-w-[52rem]">
+      <div className="mx-auto max-w-2xl">
         {/* Headline */}
         <h1
           id="hero-title"
-          className="mb-6 animate-fade-up font-display text-display-lg text-neutral-900 sm:text-display-xl"
+          className="mb-6 animate-fade-up font-display text-hero-sm font-extrabold text-indigo sm:text-hero"
         >
-          Perdele el miedo a la tecnología,{" "}
-          <span className="text-gradient">de cero a tu rol IT</span>
+          Tu lugar en tecnología{" "}
+          <span className="text-blue">ya existe</span>
         </h1>
 
-        {/* Subtitle — tight, one sentence */}
-        <p className="mx-auto mb-10 max-w-lg animate-fade-up-1 text-body-lg text-neutral-500">
+        {/* Subtitle */}
+        <p className="mx-auto mb-12 max-w-md animate-fade-up-1 text-subtitle text-muted">
           Descubrí qué área IT encaja con vos. Sin tecnicismos, sin registro, en 3 minutos.
         </p>
 
         {/* CTA */}
         <div className="animate-fade-up-2">
           <button
-            onClick={handleScrollToTest}
-            className="group inline-flex items-center gap-2.5 rounded-xl bg-neutral-900 px-6 py-3.5 text-body-sm font-semibold text-white shadow-lg transition-all duration-200 ease-out-expo hover:bg-neutral-800 hover:shadow-xl active:scale-[0.98]"
-            aria-label="Descubrí tu Perfil IT — ir al test"
+            onClick={handleScroll}
+            className="group inline-flex items-center gap-3 rounded-xl bg-indigo px-8 py-4 font-body text-body font-semibold text-white shadow-card transition-all duration-300 ease-elegant hover:-translate-y-0.5 hover:shadow-hover active:scale-[0.98]"
           >
-            Empezar ahora
-            <ArrowDown
-              className="h-4 w-4 transition-transform duration-200 group-hover:translate-y-0.5"
-              aria-hidden="true"
-            />
+            Empezar mi camino
+            <ArrowDown className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5" aria-hidden="true" />
           </button>
         </div>
 
-        {/* Reinforcement — minimal */}
-        <p className="mt-6 animate-fade-up-3 text-caption text-neutral-400">
-          Gratuito y sin cuenta. Solo curiosidad.
+        {/* Reinforcement */}
+        <p className="mt-8 animate-fade-up-3 text-small text-muted/70">
+          Gratuito. Sin cuenta. Solo curiosidad.
         </p>
       </div>
     </section>

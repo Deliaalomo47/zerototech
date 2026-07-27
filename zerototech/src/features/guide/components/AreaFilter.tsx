@@ -21,33 +21,24 @@ interface AreaFilterProps {
 }
 
 /**
- * Area filter — v3.
- *
- * Arc/Linear-inspired: tab-like pills, no emojis (cleaner),
- * subtle active state with dark bg.
+ * Area filter — Noxora final.
+ * Segmented control, indigo active pill. No emojis.
  */
 export function AreaFilter({ selected, onChange }: AreaFilterProps) {
   return (
-    <div
-      className="inline-flex items-center gap-1 rounded-xl bg-neutral-100 p-1"
-      role="radiogroup"
-      aria-label="Filtrar por área"
-    >
-      {filters.map((filter) => (
-        <button
-          key={filter.value}
-          type="button"
-          role="radio"
-          aria-checked={selected === filter.value}
-          onClick={() => onChange(filter.value)}
+    <div className="inline-flex items-center gap-1 rounded-xl bg-indigo-faint p-1"
+      role="radiogroup" aria-label="Filtrar por área">
+      {filters.map((f) => (
+        <button key={f.value} type="button" role="radio"
+          aria-checked={selected === f.value}
+          onClick={() => onChange(f.value)}
           className={cn(
-            "rounded-lg px-3.5 py-1.5 text-body-sm font-medium transition-all duration-200 ease-out-expo",
-            selected === filter.value
-              ? "bg-neutral-900 text-white shadow-sm"
-              : "text-neutral-500 hover:text-neutral-700"
-          )}
-        >
-          {filter.label}
+            "rounded-lg px-4 py-2 text-small font-medium transition-all duration-300 ease-elegant",
+            selected === f.value
+              ? "bg-indigo text-white shadow-soft"
+              : "text-muted hover:text-indigo"
+          )}>
+          {f.label}
         </button>
       ))}
     </div>

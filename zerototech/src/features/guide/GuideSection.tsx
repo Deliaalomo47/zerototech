@@ -1,61 +1,55 @@
 import { useState, useMemo } from "react";
+import { Users, BookOpen } from "lucide-react";
 import type { ITCategory } from "@/features/discovery/types";
 import { rolesData, glossaryData } from "./data";
 import { AreaFilter, RoleCard, GlossaryTerm } from "./components";
 
 /**
- * Guide section — v3.
- *
- * Notion/Linear-inspired: content-first, no decorative icons on headers,
- * tight grid, segmented tab filter, clean separation between subsections.
+ * Guide section — Noxora final.
+ * Generous whitespace, Lucide section icons, clean grid.
  */
 export function GuideSection() {
-  const [selectedArea, setSelectedArea] = useState<ITCategory | "all">("all");
+  const [area, setArea] = useState<ITCategory | "all">("all");
 
-  const filteredRoles = useMemo(() => {
-    if (selectedArea === "all") return rolesData;
-    return rolesData.filter((role) => role.category === selectedArea);
-  }, [selectedArea]);
+  const roles = useMemo(() => {
+    if (area === "all") return rolesData;
+    return rolesData.filter((r) => r.category === area);
+  }, [area]);
 
-  const filteredTerms = useMemo(() => {
-    if (selectedArea === "all") return glossaryData;
-    return glossaryData.filter((term) => term.categories.includes(selectedArea));
-  }, [selectedArea]);
+  const terms = useMemo(() => {
+    if (area === "all") return glossaryData;
+    return glossaryData.filter((t) => t.categories.includes(area));
+  }, [area]);
 
   return (
-    <section
-      id="guide-section"
-      className="mx-auto max-w-5xl px-5 py-18 sm:px-6"
-      aria-label="Guía de roles y glosario"
-    >
+    <section id="guide-section" className="mx-auto max-w-5xl px-6 py-22" aria-label="Guía de roles y glosario">
       {/* Header */}
-      <div className="mb-8 animate-fade-up">
-        <h2 className="font-display text-display-md text-neutral-900">
+      <div className="mb-10 animate-fade-up">
+        <h2 className="font-display text-title text-indigo sm:text-[2.25rem]">
           Conocé el mundo IT
         </h2>
-        <p className="mt-2 text-body-md text-neutral-500">
+        <p className="mt-2 text-subtitle text-muted">
           Qué hace cada rol, qué herramientas usa y cómo hablan entre ellos.
         </p>
       </div>
 
       {/* Filter */}
-      <div className="mb-10 animate-fade-up-1">
-        <AreaFilter selected={selectedArea} onChange={setSelectedArea} />
+      <div className="mb-12 animate-fade-up-1">
+        <AreaFilter selected={area} onChange={setArea} />
       </div>
 
       {/* Roles */}
-      <div className="mb-15">
-        <h3 className="mb-5 text-body-sm font-semibold uppercase tracking-wider text-neutral-400">
-          Roles
-        </h3>
-        {filteredRoles.length > 0 ? (
-          <div className="grid gap-4 sm:grid-cols-2">
-            {filteredRoles.map((role) => (
-              <RoleCard key={role.id} role={role} />
-            ))}
+      <div className="mb-18">
+        <div className="mb-6 flex items-center gap-2.5">
+          <Users className="h-5 w-5 text-indigo-muted" aria-hidden="true" />
+          <h3 className="text-small font-semibold uppercase tracking-wider text-muted">Roles</h3>
+        </div>
+        {roles.length > 0 ? (
+          <div className="grid gap-5 sm:grid-cols-2">
+            {roles.map((role) => <RoleCard key={role.id} role={role} />)}
           </div>
         ) : (
-          <p className="rounded-xl border border-neutral-200 p-8 text-center text-body-sm text-neutral-400">
+          <p className="rounded-xl border border-border p-10 text-center text-small text-muted">
             No hay roles para esta categoría.
           </p>
         )}
@@ -63,20 +57,19 @@ export function GuideSection() {
 
       {/* Glossary */}
       <div>
-        <h3 className="mb-2 text-body-sm font-semibold uppercase tracking-wider text-neutral-400">
-          Glosario
-        </h3>
-        <p className="mb-5 text-body-sm text-neutral-400">
+        <div className="mb-4 flex items-center gap-2.5">
+          <BookOpen className="h-5 w-5 text-indigo-muted" aria-hidden="true" />
+          <h3 className="text-small font-semibold uppercase tracking-wider text-muted">Glosario</h3>
+        </div>
+        <p className="mb-6 text-small text-muted">
           Hacé clic en un término para ver su explicación.
         </p>
-        {filteredTerms.length > 0 ? (
-          <div className="flex flex-wrap gap-2">
-            {filteredTerms.map((term) => (
-              <GlossaryTerm key={term.id} term={term} />
-            ))}
+        {terms.length > 0 ? (
+          <div className="flex flex-wrap gap-2.5">
+            {terms.map((t) => <GlossaryTerm key={t.id} term={t} />)}
           </div>
         ) : (
-          <p className="rounded-xl border border-neutral-200 p-8 text-center text-body-sm text-neutral-400">
+          <p className="rounded-xl border border-border p-10 text-center text-small text-muted">
             No hay términos para esta categoría.
           </p>
         )}
