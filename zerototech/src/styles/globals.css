@@ -9,6 +9,11 @@
 
   body {
     @apply bg-background text-indigo font-body antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(156, 188, 255, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 40% at 80% 70%, rgba(127, 255, 208, 0.05) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 30% at 10% 90%, rgba(255, 214, 165, 0.04) 0%, transparent 50%);
+    background-attachment: fixed;
   }
 
   h1, h2, h3, h4 {
@@ -26,7 +31,7 @@
   }
 
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-indigo/30 rounded-md;
+    @apply outline-2 outline-offset-2 outline-mint rounded-md;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -40,10 +45,25 @@
 }
 
 @layer components {
-  /* Stagger utility */
+  /* Glass card — the premium surface */
+  .glass-card {
+    @apply bg-gradient-glass backdrop-blur-glass border border-border rounded-xl shadow-card;
+    box-shadow:
+      0 4px 24px rgba(44, 30, 74, 0.07),
+      0 1px 4px rgba(44, 30, 74, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  /* Stagger animation helper */
   .stagger > :nth-child(1) { @apply animate-fade-up; }
   .stagger > :nth-child(2) { @apply animate-fade-up-1; }
   .stagger > :nth-child(3) { @apply animate-fade-up-2; }
   .stagger > :nth-child(4) { @apply animate-fade-up-3; }
-  .stagger > :nth-child(5) { animation: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both; }
+  .stagger > :nth-child(5) { @apply animate-fade-up-4; }
+
+  /* Holographic glow orb */
+  .orb {
+    @apply absolute rounded-full pointer-events-none;
+    filter: blur(60px);
+  }
 }

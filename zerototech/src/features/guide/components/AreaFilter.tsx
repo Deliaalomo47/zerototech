@@ -21,23 +21,30 @@ interface AreaFilterProps {
 }
 
 /**
- * Area filter — Noxora final.
- * Segmented control, indigo active pill. No emojis.
+ * Area filter — Noxora Holographic.
+ * Glass container, indigo active pill with glow, lavender hover.
  */
 export function AreaFilter({ selected, onChange }: AreaFilterProps) {
   return (
-    <div className="inline-flex items-center gap-1 rounded-xl bg-indigo-faint p-1"
-      role="radiogroup" aria-label="Filtrar por área">
+    <div
+      className="inline-flex items-center gap-1 rounded-xl border border-border bg-surface-glass p-1.5 backdrop-blur-xs shadow-soft"
+      role="radiogroup"
+      aria-label="Filtrar por área"
+    >
       {filters.map((f) => (
-        <button key={f.value} type="button" role="radio"
+        <button
+          key={f.value}
+          type="button"
+          role="radio"
           aria-checked={selected === f.value}
           onClick={() => onChange(f.value)}
           className={cn(
             "rounded-lg px-4 py-2 text-small font-medium transition-all duration-300 ease-elegant",
             selected === f.value
-              ? "bg-indigo text-white shadow-soft"
-              : "text-muted hover:text-indigo"
-          )}>
+              ? "bg-gradient-indigo text-white shadow-glow-indigo"
+              : "text-muted hover:text-indigo hover:bg-lavender-light"
+          )}
+        >
           {f.label}
         </button>
       ))}

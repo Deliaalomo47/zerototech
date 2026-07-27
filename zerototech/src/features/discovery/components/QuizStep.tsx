@@ -8,13 +8,12 @@ interface QuizStepProps {
 }
 
 /**
- * Quiz step — Noxora final.
- * Clean hierarchy, stagger on options.
+ * Quiz step — Noxora Holographic.
  */
 export function QuizStep({ question, selectedOptionId, onSelectOption }: QuizStepProps) {
   return (
     <div className="animate-fade-up">
-      <h2 className="mb-2 font-display text-title text-indigo">
+      <h2 className="mb-3 font-display text-title-sm text-indigo sm:text-title">
         {question.question}
       </h2>
 

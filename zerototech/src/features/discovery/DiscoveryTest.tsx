@@ -11,8 +11,8 @@ interface DiscoveryTestProps {
 }
 
 /**
- * Discovery Test — Noxora final.
- * Clean card, generous padding, indigo actions.
+ * Discovery Test — Noxora Holographic.
+ * Glass card container, premium depth.
  */
 export function DiscoveryTest({ onComplete }: DiscoveryTestProps) {
   const [phase, setPhase] = useState<QuizPhase>("quiz");
@@ -66,7 +66,7 @@ export function DiscoveryTest({ onComplete }: DiscoveryTestProps) {
 
   return (
     <section id="discovery-test" className="mx-auto max-w-xl px-6 py-22" aria-label="Test de descubrimiento IT">
-      <div className="rounded-2xl border border-border bg-surface p-8 shadow-card sm:p-10">
+      <div className="glass-card rounded-2xl p-8 shadow-elevated sm:p-10">
         <XPTracker current={currentStep + 1} total={totalSteps} className="mb-10" />
 
         <QuizStep
@@ -81,7 +81,7 @@ export function DiscoveryTest({ onComplete }: DiscoveryTestProps) {
             type="button"
             onClick={handleNext}
             disabled={!selectedOptionId}
-            className="group inline-flex items-center gap-2 rounded-xl bg-indigo px-6 py-3.5 text-body font-semibold text-white shadow-soft transition-all duration-300 ease-elegant hover:-translate-y-0.5 hover:shadow-card active:scale-[0.98] disabled:opacity-30 disabled:pointer-events-none"
+            className="group inline-flex items-center gap-2.5 rounded-xl bg-gradient-indigo px-7 py-4 text-body font-semibold text-white shadow-card transition-all duration-300 ease-elegant hover:-translate-y-0.5 hover:shadow-hover active:scale-[0.97] disabled:opacity-30 disabled:pointer-events-none"
           >
             {currentStep < totalSteps - 1 ? "Siguiente" : "Ver mi perfil"}
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />

@@ -11,10 +11,8 @@ interface OptionCardProps {
 }
 
 /**
- * Option card — Noxora final.
- *
- * Generous padding, soft border, subtle elevation on select.
- * No heavy shadows. Clean and inviting.
+ * Option card — Noxora Holographic.
+ * Glass surface, mint glow on select, premium interaction.
  */
 export function OptionCard({ text, icon, isSelected, onSelect }: OptionCardProps) {
   const Icon = iconMap[icon] ?? Code;
@@ -26,25 +24,30 @@ export function OptionCard({ text, icon, isSelected, onSelect }: OptionCardProps
       className={cn(
         "group flex w-full items-center gap-4 rounded-xl border-2 p-5 text-left transition-all duration-300 ease-elegant",
         isSelected
-          ? "border-mint bg-mint-light shadow-glow"
-          : "border-border bg-surface hover:border-indigo/15 hover:shadow-soft hover:-translate-y-px"
+          ? "border-mint/50 bg-mint-light shadow-glow-mint"
+          : "glass-card border-border hover:-translate-y-0.5 hover:border-lavender/30 hover:shadow-hover"
       )}
       aria-pressed={isSelected}
     >
+      {/* Icon */}
       <div className={cn(
-        "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg transition-all duration-300",
-        isSelected ? "bg-indigo text-mint" : "bg-indigo-faint text-indigo-muted group-hover:bg-indigo/5"
+        "flex h-11 w-11 shrink-0 items-center justify-center rounded-lg transition-all duration-300",
+        isSelected
+          ? "bg-indigo text-mint shadow-glow-indigo"
+          : "bg-indigo-faint text-indigo-muted group-hover:bg-lavender-light group-hover:text-indigo"
       )}>
-        <Icon className="h-4.5 w-4.5" aria-hidden="true" />
+        <Icon className="h-5 w-5" aria-hidden="true" />
       </div>
 
+      {/* Text */}
       <span className={cn(
-        "flex-1 text-body",
+        "flex-1 text-body leading-relaxed",
         isSelected ? "text-indigo font-medium" : "text-indigo-muted"
       )}>
         {text}
       </span>
 
+      {/* Check */}
       {isSelected && (
         <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-mint animate-scale-in">
           <Check className="h-3.5 w-3.5 text-indigo" strokeWidth={3} aria-hidden="true" />
