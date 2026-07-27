@@ -4,19 +4,19 @@ import { DiscoveryTest } from "@/features/discovery";
 import { ResultsPage, useProgress } from "@/features/results";
 import { GuideSection } from "@/features/guide";
 import { CompaniesSection } from "@/features/companies";
-import { CommunitySection } from "@/features/community";
+import { OpportunitiesSection } from "@/features/opportunities";
 import type { QuizResult } from "@/features/discovery";
 
 /**
  * ZeroToTech — Plataforma de exploración IT.
  *
- * Estructura por secciones:
+ * Flujo:
  * 1. Inicio (Hero)
- * 2. Descubrí tu pasión (Test + Resultado/Roadmap)
- * 3. Roles IT (Guía de roles)
- * 4. Empresas (Argentinas + Internacionales)
- * 5. Comunidad (Comunidades tech)
- * 6. Roadmap (dentro de ResultsPage si completó el test)
+ * 2. Descubrí tu pasión (Test + Roadmap)
+ * 3. Roles IT
+ * 4. Empresas
+ * 5. Oportunidades (Fundaciones + Comunidades + Eventos)
+ * 6. Roadmap (dentro de resultados)
  */
 function App() {
   const {
@@ -37,7 +37,7 @@ function App() {
       {/* 1. Inicio */}
       <HeroSection />
 
-      {/* 2. Descubrí tu pasión */}
+      {/* 2. Descubrí tu pasión + 6. Roadmap */}
       <div id="descubri">
         {!quizResult ? (
           <DiscoveryTest onComplete={handleQuizComplete} />
@@ -62,8 +62,8 @@ function App() {
       {/* 4. Empresas */}
       <CompaniesSection />
 
-      {/* 5. Comunidad */}
-      <CommunitySection />
+      {/* 5. Oportunidades (Fundaciones + Comunidades + Eventos) */}
+      <OpportunitiesSection userProfile={quizResult?.winner ?? null} />
     </MainLayout>
   );
 }
