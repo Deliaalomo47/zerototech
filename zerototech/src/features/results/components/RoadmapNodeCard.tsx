@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, ExternalLink, CheckCircle2, BookOpen, Video, Wrench, GraduationCap } from "lucide-react";
+import { ChevronDown, ExternalLink, CheckCircle2, BookOpen, Video, Wrench, GraduationCap, Sparkles } from "lucide-react";
 import { cn } from "@/utils/cn";
 import type { RoadmapNode, RoadmapResource } from "../types";
 
@@ -17,11 +17,13 @@ interface RoadmapNodeCardProps {
 }
 
 /**
- * Tarjeta desplegable para un nodo del roadmap.
+ * Nodo del roadmap desplegable — rediseño v2.
  *
- * - Estado por defecto: colapsada, mostrando título y XP
- * - Al expandir: muestra descripción, recursos con links y botón "Marcar como Aprendido"
- * - Si está completada: borde verde (success), ícono de check, no muestra botón
+ * - Estado completado con glow verde sutil
+ * - Animación scaleIn para el check
+ * - Recursos con hover más premium
+ * - Botón de completar con efecto de celebración
+ * - Transiciones más orgánicas
  */
 export function RoadmapNodeCard({ node, isCompleted, onMarkCompleted }: RoadmapNodeCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -29,25 +31,27 @@ export function RoadmapNodeCard({ node, isCompleted, onMarkCompleted }: RoadmapN
   return (
     <div
       className={cn(
-        "rounded-card border-2 bg-surface shadow-card transition-all duration-200",
+        "rounded-card border-2 bg-surface transition-all duration-300 ease-out-expo",
         isCompleted
-          ? "border-success/50 bg-success/5"
-          : "border-transparent hover:shadow-card-hover"
+          ? "border-success/40 shadow-glow-success"
+          : "border-transparent shadow-card hover:shadow-card-hover"
       )}
     >
-      {/* Header — siempre visible, clickeable para expandir/colapsar */}
+      {/* Header */}
       <button
         type="button"
         onClick={() => setIsExpanded(!isExpanded)}
-        className="flex w-full items-center gap-4 p-5 text-left"
+        className="flex w-full items-center gap-4 p-5 text-left sm:p-6"
         aria-expanded={isExpanded}
         aria-controls={`node-content-${node.id}`}
       >
-        {/* Indicador de estado */}
+        {/* Indicador */}
         <div
           className={cn(
-            "flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors duration-200",
-            isCompleted ? "bg-success text-white" : "bg-primary/10 text-primary"
+            "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-all duration-300",
+            isCompleted
+              ? "bg-success text-white shadow-glow-success"
+              : "bg-canvas-deep text-primary"
           )}
         >
           {isCompleted ? (
@@ -57,7 +61,7 @@ export function RoadmapNodeCard({ node, isCompleted, onMarkCompleted }: RoadmapN
           )}
         </div>
 
-        {/* Título y XP */}
+        {/* Título y meta */}
         <div className="flex-1 min-w-0">
           <h4
             className={cn(
@@ -67,15 +71,15 @@ export function RoadmapNodeCard({ node, isCompleted, onMarkCompleted }: RoadmapN
           >
             {node.title}
           </h4>
-          <p className="mt-0.5 text-sm text-dark-soft">
-            {isCompleted ? "✓ Completado" : `+${node.xp} XP`}
+          <p className="mt-0.5 text-sm text-dark-muted">
+            {isCompleted ? "Completado" : `+${node.xp} XP al completar`}
           </p>
         </div>
 
         {/* Chevron */}
         <ChevronDown
           className={cn(
-            "h-5 w-5 shrink-0 text-dark-soft transition-transform duration-200",
+            "h-5 w-5 shrink-0 text-dark-muted transition-transform duration-300 ease-out-expo",
             isExpanded && "rotate-180"
           )}
           aria-hidden="true"
@@ -86,16 +90,16 @@ export function RoadmapNodeCard({ node, isCompleted, onMarkCompleted }: RoadmapN
       {isExpanded && (
         <div
           id={`node-content-${node.id}`}
-          className="animate-fadeInUp border-t border-primary/10 px-5 pb-5 pt-4"
+          className="animate-fadeInUp border-t border-canvas-deep/50 px-5 pb-6 pt-5 sm:px-6"
         >
           {/* Descripción */}
-          <p className="mb-4 text-sm leading-relaxed text-dark-soft sm:text-base">
+          <p className="mb-5 text-sm leading-relaxed text-dark-soft sm:text-base">
             {node.description}
           </p>
 
           {/* Recursos */}
-          <div className="mb-5 space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-wider text-dark-soft">
+          <div className="mb-6 space-y-2">
+            <p className="mb-3 text-xs font-bold uppercase tracking-wider text-dark-muted">
               Recursos recomendados
             </p>
             {node.resources.map((resource, idx) => {
@@ -106,26 +110,28 @@ export function RoadmapNodeCard({ node, isCompleted, onMarkCompleted }: RoadmapN
                   href={resource.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-3 rounded-btn bg-background px-4 py-3 text-sm transition-all duration-200 hover:bg-primary/5 hover:shadow-sm"
+                  className="group flex items-center gap-3 rounded-xl border border-transparent bg-canvas-soft px-4 py-3.5 text-sm transition-all duration-200 hover:border-primary/15 hover:bg-primary-50 hover:shadow-sm"
                 >
-                  <Icon className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-primary/15">
+                    <Icon className="h-4 w-4 text-primary" aria-hidden="true" />
+                  </div>
                   <span className="flex-1 font-medium text-dark group-hover:text-primary">
                     {resource.title}
                   </span>
-                  <ExternalLink className="h-3.5 w-3.5 shrink-0 text-dark-soft opacity-0 transition-opacity group-hover:opacity-100" aria-hidden="true" />
+                  <ExternalLink className="h-3.5 w-3.5 text-dark-muted opacity-0 transition-opacity group-hover:opacity-100" aria-hidden="true" />
                 </a>
               );
             })}
           </div>
 
-          {/* Botón "Marcar como Aprendido" */}
+          {/* Botón completar */}
           {!isCompleted && (
             <button
               type="button"
               onClick={() => onMarkCompleted(node.id, node.xp)}
-              className="inline-flex items-center gap-2 rounded-btn bg-success px-5 py-2.5 text-sm font-bold text-white shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:shadow-card-hover active:scale-[0.97]"
+              className="group inline-flex items-center gap-2.5 rounded-btn-lg bg-success px-6 py-3 text-sm font-bold text-white shadow-soft transition-all duration-300 ease-out-expo hover:-translate-y-0.5 hover:shadow-glow-success active:scale-[0.97]"
             >
-              <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
+              <Sparkles className="h-4 w-4 transition-transform duration-300 group-hover:rotate-12" aria-hidden="true" />
               Marcar como Aprendido
             </button>
           )}

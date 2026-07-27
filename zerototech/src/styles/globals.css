@@ -9,30 +9,86 @@
 
   body {
     @apply bg-background text-dark font-body antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
-  h1,
-  h2,
-  h3,
-  h4 {
+  h1, h2, h3, h4 {
     @apply font-display text-dark;
+    text-wrap: balance;
   }
 
-  /* Foco visible para navegación por teclado */
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Smooth selection color */
+  ::selection {
+    background-color: rgba(60, 130, 246, 0.15);
+    color: #1A1136;
+  }
+
+  /* Accessible focus ring */
   :focus-visible {
     outline: 2px solid theme("colors.primary.DEFAULT");
     outline-offset: 3px;
-    border-radius: 0.375rem;
+    border-radius: 0.5rem;
   }
 
+  /* Smooth transitions globally for interactive elements */
+  button, a, input, [role="button"] {
+    @apply transition-all duration-200 ease-out-expo;
+  }
+
+  /* Respect motion preferences */
   @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
+    *, *::before, *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+  }
+}
+
+@layer components {
+  /* Reusable glass card effect */
+  .glass-card {
+    @apply bg-surface/80 backdrop-blur-xl border border-white/60;
+  }
+
+  /* Section divider */
+  .section-divider {
+    @apply h-px w-full bg-section-divider my-16;
+  }
+
+  /* Gradient text utility */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-route;
+  }
+
+  /* Stagger animation containers */
+  .stagger-children > * {
+    @apply opacity-0 animate-fadeInUp;
+  }
+  .stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+  .stagger-children > *:nth-child(2) { animation-delay: 80ms; }
+  .stagger-children > *:nth-child(3) { animation-delay: 160ms; }
+  .stagger-children > *:nth-child(4) { animation-delay: 240ms; }
+  .stagger-children > *:nth-child(5) { animation-delay: 320ms; }
+  .stagger-children > *:nth-child(6) { animation-delay: 400ms; }
+}
+
+@layer utilities {
+  /* Subtle noise texture overlay */
+  .texture-noise {
+    position: relative;
+  }
+  .texture-noise::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.02;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   }
 }

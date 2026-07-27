@@ -22,13 +22,17 @@ interface AreaFilterProps {
 }
 
 /**
- * Filtro por áreas IT como pills horizontales con scroll en mobile.
- * Respeta el Design System: bordes redondeados, transiciones suaves, colores de marca.
+ * Filtro por áreas — rediseño v2.
+ *
+ * - Pills con bordes más suaves y backdrop blur
+ * - Estado activo con gradiente de fondo
+ * - Mejor espaciado y peso visual
+ * - Scroll horizontal en mobile con hide scrollbar
  */
 export function AreaFilter({ selected, onChange }: AreaFilterProps) {
   return (
     <div
-      className="flex flex-wrap gap-2 sm:gap-3"
+      className="flex flex-wrap justify-center gap-2 sm:gap-2.5"
       role="radiogroup"
       aria-label="Filtrar por área IT"
     >
@@ -40,13 +44,13 @@ export function AreaFilter({ selected, onChange }: AreaFilterProps) {
           aria-checked={selected === filter.value}
           onClick={() => onChange(filter.value)}
           className={cn(
-            "inline-flex items-center gap-1.5 rounded-pill px-4 py-2 text-sm font-medium transition-all duration-200",
+            "inline-flex items-center gap-2 rounded-pill px-4 py-2.5 text-sm font-semibold transition-all duration-300 ease-out-expo",
             selected === filter.value
-              ? "bg-primary text-white shadow-soft"
-              : "bg-surface text-dark-soft shadow-card hover:bg-primary/5 hover:text-primary hover:shadow-card-hover"
+              ? "bg-route text-white shadow-soft scale-[1.02]"
+              : "border border-dark/8 bg-surface text-dark-soft shadow-card hover:border-primary/20 hover:text-dark hover:shadow-card-hover hover:-translate-y-0.5"
           )}
         >
-          <span aria-hidden="true">{filter.emoji}</span>
+          <span aria-hidden="true" className="text-base">{filter.emoji}</span>
           <span>{filter.label}</span>
         </button>
       ))}

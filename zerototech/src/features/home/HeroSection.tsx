@@ -1,13 +1,15 @@
-import { ArrowDown, Sparkles } from "lucide-react";
+import { ArrowDown, Sparkles, Heart } from "lucide-react";
 
 /**
- * Sección Hero — primera impresión de ZeroToTech.
+ * Hero Section — el momento emocional más importante.
  *
- * Objetivo emocional: que el usuario sienta curiosidad y confianza.
- * Tono: conversacional, motivador, sin tecnicismos.
- *
- * El botón principal hace scroll suave hacia la sección del test
- * (identificada con id="discovery-test").
+ * Rediseño v2:
+ * - Gradientes de fondo más cálidos y orgánicos (no círculos planos)
+ * - Animación escalonada para ritmo narrativo
+ * - Mayor contraste tipográfico (hero font size)
+ * - Botón con efecto glow pulsante que invita a la acción
+ * - Más espacio para respirar
+ * - Detalles humanos: corazón, mensaje personal
  */
 export function HeroSection() {
   const handleScrollToTest = () => {
@@ -19,60 +21,70 @@ export function HeroSection() {
 
   return (
     <section
-      className="relative flex min-h-[85vh] flex-col items-center justify-center px-4 text-center sm:px-6"
+      className="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden px-5 text-center sm:px-8"
       aria-labelledby="hero-title"
     >
-      {/* Decoración sutil de fondo */}
-      <div
-        className="pointer-events-none absolute inset-0 overflow-hidden"
-        aria-hidden="true"
-      >
-        <div className="absolute -top-24 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
-        <div className="absolute -bottom-32 right-0 h-[300px] w-[300px] rounded-full bg-secondary/10 blur-3xl" />
-        <div className="absolute left-10 top-1/3 h-[200px] w-[200px] rounded-full bg-accent/10 blur-3xl" />
+      {/* --- Fondo atmosférico --- */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+        {/* Glow superior principal */}
+        <div className="absolute inset-0 bg-hero-glow" />
+        {/* Calidez inferior derecha */}
+        <div className="absolute inset-0 bg-hero-warm" />
+        {/* Orb flotante decorativo */}
+        <div className="absolute left-[10%] top-[20%] h-72 w-72 rounded-full bg-violet/5 blur-[100px] animate-float" />
+        <div className="absolute right-[15%] bottom-[25%] h-56 w-56 rounded-full bg-secondary/8 blur-[80px] animate-float [animation-delay:2s]" />
       </div>
 
-      {/* Contenido principal */}
+      {/* --- Contenido principal --- */}
       <div className="relative z-10 mx-auto max-w-3xl">
         {/* Badge introductorio */}
-        <div className="mb-6 inline-flex items-center gap-2 rounded-pill bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
-          <Sparkles className="h-4 w-4" aria-hidden="true" />
-          <span>Sin registro, sin compromiso</span>
+        <div className="mb-8 inline-flex animate-fadeInUp items-center gap-2 rounded-pill border border-primary/15 bg-surface/80 px-5 py-2.5 shadow-card backdrop-blur-sm">
+          <Sparkles className="h-4 w-4 text-primary" aria-hidden="true" />
+          <span className="text-sm font-semibold text-dark">
+            Sin registro, sin compromiso, sin miedo
+          </span>
         </div>
 
-        {/* Título principal */}
+        {/* Título principal — tipografía hero */}
         <h1
           id="hero-title"
-          className="mb-6 font-display text-4xl font-extrabold leading-tight text-dark sm:text-5xl lg:text-6xl"
+          className="mb-7 animate-fadeInUp-delay-1 font-display text-hero-sm font-extrabold text-dark sm:text-hero"
         >
           Perdele el miedo a la tecnología,{" "}
-          <span className="bg-gradient-to-r from-primary to-violet bg-clip-text text-transparent">
+          <span className="text-gradient">
             de cero a tu rol IT
           </span>
         </h1>
 
-        {/* Subtítulo empático */}
-        <p className="mx-auto mb-10 max-w-xl text-lg leading-relaxed text-dark-soft sm:text-xl">
+        {/* Subtítulo empático — con más calidez */}
+        <p className="mx-auto mb-12 max-w-xl animate-fadeInUp-delay-2 text-lg leading-relaxed text-dark-soft sm:text-xl">
           Descubrí qué área IT encaja con vos sin tecnicismos ni aburrimiento.
           Solo respuestas honestas y un camino claro para empezar.
         </p>
 
-        {/* CTA principal */}
-        <button
-          onClick={handleScrollToTest}
-          className="group inline-flex items-center gap-3 rounded-btn-lg bg-primary px-8 py-4 font-display text-base font-bold text-white shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:shadow-card-hover active:scale-[0.98] sm:text-lg"
-          aria-label="Descubrí tu Perfil IT sin Registro — ir a la sección del test"
-        >
-          Descubrí tu Perfil IT sin Registro
-          <ArrowDown
-            className="h-5 w-5 transition-transform duration-200 group-hover:translate-y-0.5"
-            aria-hidden="true"
-          />
-        </button>
+        {/* CTA principal con efecto glow */}
+        <div className="animate-fadeInUp-delay-3">
+          <button
+            onClick={handleScrollToTest}
+            className="group relative inline-flex items-center gap-3 rounded-btn-lg bg-primary px-9 py-4.5 font-display text-base font-bold text-white shadow-soft transition-all duration-300 ease-out-expo hover:-translate-y-1 hover:shadow-glow active:scale-[0.97] sm:text-lg"
+            aria-label="Descubrí tu Perfil IT sin Registro — ir a la sección del test"
+          >
+            {/* Glow ring detrás del botón */}
+            <span className="absolute inset-0 rounded-btn-lg bg-primary/20 blur-xl transition-opacity duration-300 group-hover:opacity-100 opacity-0" aria-hidden="true" />
+            <span className="relative flex items-center gap-3">
+              Descubrí tu Perfil IT
+              <ArrowDown
+                className="h-5 w-5 transition-transform duration-300 group-hover:translate-y-1"
+                aria-hidden="true"
+              />
+            </span>
+          </button>
+        </div>
 
-        {/* Texto de refuerzo */}
-        <p className="mt-5 text-sm text-dark-soft/70">
-          Toma solo 3 minutos. No necesitás saber nada de tecnología.
+        {/* Texto de refuerzo humanizado */}
+        <p className="mt-7 flex animate-fadeInUp-delay-3 items-center justify-center gap-1.5 text-sm text-dark-muted">
+          <Heart className="h-3.5 w-3.5 text-coral" aria-hidden="true" />
+          <span>Solo 3 minutos. No necesitás saber nada de tecnología.</span>
         </p>
       </div>
     </section>

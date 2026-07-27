@@ -1,7 +1,6 @@
 import { Wrench, Cloud, Shield, Palette, Code, type LucideIcon } from "lucide-react";
 import { cn } from "@/utils/cn";
 
-/** Mapa de nombres de íconos a componentes Lucide */
 const iconMap: Record<string, LucideIcon> = {
   Wrench,
   Cloud,
@@ -11,23 +10,20 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 interface OptionCardProps {
-  /** Texto de la opción */
   text: string;
-  /** Nombre del ícono de Lucide */
   icon: string;
-  /** Si la opción está seleccionada */
   isSelected: boolean;
-  /** Callback al hacer clic */
   onSelect: () => void;
 }
 
 /**
- * Tarjeta interactiva de opción de respuesta.
+ * Tarjeta de opción — rediseño v2.
  *
- * - Fondo blanco (surface) con sombra suave
- * - Elevación y borde azul al hover
- * - Estado seleccionado con borde primary y fondo sutil
- * - Transiciones de 200ms como indica el Design System
+ * - Bordes más suaves y orgánicos (card radius)
+ * - Efecto de selección con glow tintado
+ * - Ícono con gradiente de fondo cuando activo
+ * - Transición spring para el estado seleccionado
+ * - Micro-lift más sutil y elegante
  */
 export function OptionCard({ text, icon, isSelected, onSelect }: OptionCardProps) {
   const Icon = iconMap[icon] ?? Code;
@@ -37,30 +33,43 @@ export function OptionCard({ text, icon, isSelected, onSelect }: OptionCardProps
       type="button"
       onClick={onSelect}
       className={cn(
-        "group flex w-full items-start gap-4 rounded-card border-2 bg-surface p-5 text-left shadow-card transition-all duration-200",
-        "hover:-translate-y-0.5 hover:shadow-card-hover",
+        "group flex w-full items-center gap-4 rounded-card border-2 bg-surface p-5 text-left transition-all duration-300 ease-out-expo sm:p-6",
         isSelected
-          ? "border-primary bg-primary/5 shadow-card-hover"
-          : "border-transparent hover:border-primary/30"
+          ? "border-primary/50 shadow-glow scale-[1.01]"
+          : "border-transparent shadow-card hover:-translate-y-0.5 hover:border-primary/20 hover:shadow-card-hover"
       )}
       aria-pressed={isSelected}
     >
       {/* Ícono */}
       <div
         className={cn(
-          "flex h-11 w-11 shrink-0 items-center justify-center rounded-btn transition-colors duration-200",
+          "flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-all duration-300",
           isSelected
-            ? "bg-primary text-white"
-            : "bg-primary/10 text-primary group-hover:bg-primary/20"
+            ? "bg-route shadow-soft text-white"
+            : "bg-canvas-deep text-primary group-hover:bg-primary/10"
         )}
       >
         <Icon className="h-5 w-5" aria-hidden="true" />
       </div>
 
       {/* Texto */}
-      <span className="pt-1 text-sm font-medium leading-relaxed text-dark sm:text-base">
+      <span
+        className={cn(
+          "text-sm font-medium leading-relaxed sm:text-base transition-colors duration-200",
+          isSelected ? "text-dark font-semibold" : "text-dark-soft"
+        )}
+      >
         {text}
       </span>
+
+      {/* Check indicator */}
+      {isSelected && (
+        <div className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary animate-scaleIn">
+          <svg className="h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+      )}
     </button>
   );
 }

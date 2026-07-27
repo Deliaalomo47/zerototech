@@ -1,9 +1,6 @@
-import { Zap } from "lucide-react";
+import { Zap, TrendingUp } from "lucide-react";
 import type { XPLevel } from "../types";
 
-/**
- * Definición de niveles por XP acumulado.
- */
 const levels: XPLevel[] = [
   { level: 1, name: "Curioso/a", minXP: 0, maxXP: 50 },
   { level: 2, name: "Explorador/a", minXP: 50, maxXP: 150 },
@@ -24,8 +21,12 @@ interface XPBarProps {
 }
 
 /**
- * Barra de nivel y XP que se muestra en la parte superior de la sección de resultados.
- * Muestra el nivel actual, nombre, XP acumulado y progreso hasta el siguiente nivel.
+ * Barra de XP y nivel — rediseño v2.
+ *
+ * - Ícono con fondo gradiente dorado
+ * - Barra de progreso con gradiente cálido
+ * - Badge del nivel con personalidad
+ * - Mejor layout y espaciado
  */
 export function XPBar({ totalXP }: XPBarProps) {
   const currentLevel = getCurrentLevel(totalXP);
@@ -34,28 +35,28 @@ export function XPBar({ totalXP }: XPBarProps) {
   const progressPercent = Math.min(Math.round((progressInLevel / levelRange) * 100), 100);
 
   return (
-    <div className="rounded-card bg-surface p-5 shadow-card sm:p-6">
+    <div className="animate-fadeInUp-delay-1 rounded-card border border-white/60 bg-surface/80 p-5 shadow-card backdrop-blur-sm sm:p-6">
       <div className="flex items-center gap-4">
-        {/* Ícono de nivel */}
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-warning/20">
-          <Zap className="h-6 w-6 text-warning" aria-hidden="true" />
+        {/* Ícono con gradiente */}
+        <div className="flex h-13 w-13 items-center justify-center rounded-xl bg-route-warm shadow-soft">
+          <Zap className="h-6 w-6 text-white" aria-hidden="true" />
         </div>
 
         {/* Info de nivel */}
         <div className="flex-1 min-w-0">
-          <div className="flex items-baseline gap-2">
+          <div className="flex items-center gap-2.5">
             <span className="font-display text-lg font-bold text-dark">
               Nivel {currentLevel.level}
             </span>
-            <span className="text-sm font-medium text-dark-soft">
+            <span className="rounded-pill bg-warning/15 px-2.5 py-0.5 text-xs font-bold text-accent-dark">
               {currentLevel.name}
             </span>
           </div>
 
-          {/* Barra de progreso */}
-          <div className="mt-2 flex items-center gap-3">
+          {/* Barra */}
+          <div className="mt-2.5 flex items-center gap-3">
             <div
-              className="h-2.5 flex-1 overflow-hidden rounded-pill bg-warning/20"
+              className="h-2.5 flex-1 overflow-hidden rounded-pill bg-canvas-deep/50"
               role="progressbar"
               aria-valuenow={totalXP}
               aria-valuemin={currentLevel.minXP}
@@ -63,13 +64,14 @@ export function XPBar({ totalXP }: XPBarProps) {
               aria-label={`Experiencia: ${totalXP} XP, nivel ${currentLevel.level}`}
             >
               <div
-                className="h-full rounded-pill bg-warning transition-all duration-500 ease-out"
+                className="h-full rounded-pill bg-route-warm transition-all duration-700 ease-out-expo"
                 style={{ width: `${progressPercent}%` }}
               />
             </div>
-            <span className="shrink-0 text-sm font-bold text-warning">
+            <div className="flex shrink-0 items-center gap-1 text-sm font-bold text-accent-dark">
+              <TrendingUp className="h-3.5 w-3.5" aria-hidden="true" />
               {totalXP} XP
-            </span>
+            </div>
           </div>
         </div>
       </div>

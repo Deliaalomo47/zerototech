@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import type { ITCategory, QuizResult } from "./types";
 import { quizQuestions } from "./data";
 import { XPTracker, QuizStep, DiscoveryLoader } from "./components";
@@ -7,34 +7,31 @@ import { XPTracker, QuizStep, DiscoveryLoader } from "./components";
 type QuizPhase = "quiz" | "loading" | "done";
 
 interface DiscoveryTestProps {
-  /** Callback cuando el quiz termina y hay un resultado */
   onComplete?: (result: QuizResult) => void;
 }
 
 /**
- * Sección principal del Test de Orientación "Cero-a-Tech".
+ * Test de Orientación "Cero-a-Tech" — rediseño v2.
  *
- * Maneja el estado completo del quiz:
- * 1. Navega entre preguntas guardando la respuesta seleccionada
- * 2. Al terminar, calcula la categoría con mayor puntaje
- * 3. Muestra un loader amigable antes de entregar el resultado
+ * Mejoras visuales:
+ * - Contenedor con glass-card y más presencia
+ * - Botón con estados más expresivos
+ * - Mejor estructura visual (card envolvente)
+ * - Transiciones más fluidas entre pasos
  */
 export function DiscoveryTest({ onComplete }: DiscoveryTestProps) {
   const [phase, setPhase] = useState<QuizPhase>("quiz");
   const [currentStep, setCurrentStep] = useState(0);
-  // Guarda el ID de la opción seleccionada por cada pregunta
   const [answers, setAnswers] = useState<Record<number, string>>({});
 
   const totalSteps = quizQuestions.length;
   const currentQuestion = quizQuestions[currentStep];
   const selectedOptionId = answers[currentStep] ?? null;
 
-  /** Guarda la opción seleccionada para la pregunta actual */
   const handleSelectOption = useCallback((optionId: string) => {
     setAnswers((prev) => ({ ...prev, [currentStep]: optionId }));
   }, [currentStep]);
 
-  /** Calcula los puntajes y determina la categoría ganadora */
   const calculateResult = useCallback((): QuizResult => {
     const scores: Record<ITCategory, number> = {
       soporte: 0,
@@ -44,7 +41,6 @@ export function DiscoveryTest({ onComplete }: DiscoveryTestProps) {
       desarrollo: 0,
     };
 
-    // Recorre todas las respuestas y suma puntos por categoría
     for (const [stepIndex, optionId] of Object.entries(answers)) {
       const question = quizQuestions[Number(stepIndex)];
       const selectedOption = question?.options.find((o) => o.id === optionId);
@@ -53,7 +49,6 @@ export function DiscoveryTest({ onComplete }: DiscoveryTestProps) {
       }
     }
 
-    // Encuentra la categoría con mayor puntaje
     const winner = (Object.entries(scores) as [ITCategory, number][]).reduce(
       (max, entry) => (entry[1] > max[1] ? entry : max)
     )[0];
@@ -61,17 +56,13 @@ export function DiscoveryTest({ onComplete }: DiscoveryTestProps) {
     return { winner, scores };
   }, [answers]);
 
-  /** Avanza a la siguiente pregunta o finaliza el quiz */
   const handleNext = useCallback(() => {
     if (!selectedOptionId) return;
 
     if (currentStep < totalSteps - 1) {
-      // Siguiente pregunta
       setCurrentStep((prev) => prev + 1);
     } else {
-      // Última pregunta: mostrar loader y calcular resultado
       setPhase("loading");
-
       setTimeout(() => {
         const result = calculateResult();
         setPhase("done");
@@ -80,12 +71,12 @@ export function DiscoveryTest({ onComplete }: DiscoveryTestProps) {
     }
   }, [currentStep, totalSteps, selectedOptionId, calculateResult, onComplete]);
 
-  // --- FASE: CARGANDO ---
+  // --- LOADING ---
   if (phase === "loading" || phase === "done") {
     return (
       <section
         id="discovery-test"
-        className="mx-auto max-w-2xl px-4 py-16 sm:px-6"
+        className="relative mx-auto max-w-2xl px-5 py-20 sm:px-8"
         aria-label="Calculando resultado del test"
       >
         <DiscoveryLoader />
@@ -93,38 +84,47 @@ export function DiscoveryTest({ onComplete }: DiscoveryTestProps) {
     );
   }
 
-  // --- FASE: QUIZ ACTIVO ---
+  // --- QUIZ ---
   return (
     <section
       id="discovery-test"
-      className="mx-auto max-w-2xl px-4 py-16 sm:px-6"
+      className="mx-auto max-w-2xl px-5 py-20 sm:px-8"
       aria-label="Test de descubrimiento IT"
     >
-      {/* Barra de progreso */}
-      <XPTracker current={currentStep + 1} total={totalSteps} className="mb-10" />
+      {/* Card envolvente */}
+      <div className="rounded-card-lg border border-white/60 bg-surface/60 p-6 shadow-elevated backdrop-blur-sm sm:p-10">
+        {/* Barra de progreso */}
+        <XPTracker current={currentStep + 1} total={totalSteps} className="mb-10" />
 
-      {/* Pregunta actual con opciones */}
-      <QuizStep
-        key={currentQuestion.id}
-        question={currentQuestion}
-        selectedOptionId={selectedOptionId}
-        onSelectOption={handleSelectOption}
-      />
+        {/* Pregunta actual */}
+        <QuizStep
+          key={currentQuestion.id}
+          question={currentQuestion}
+          selectedOptionId={selectedOptionId}
+          onSelectOption={handleSelectOption}
+        />
 
-      {/* Botón de avance */}
-      <div className="mt-8 flex justify-end">
-        <button
-          type="button"
-          onClick={handleNext}
-          disabled={!selectedOptionId}
-          className="group inline-flex items-center gap-2 rounded-btn-lg bg-primary px-7 py-3.5 font-display text-base font-bold text-white shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:shadow-card-hover active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:translate-y-0 disabled:hover:shadow-soft"
-        >
-          {currentStep < totalSteps - 1 ? "Siguiente" : "Ver mi perfil"}
-          <ArrowRight
-            className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-0.5"
-            aria-hidden="true"
-          />
-        </button>
+        {/* Botón de avance */}
+        <div className="mt-10 flex justify-end">
+          <button
+            type="button"
+            onClick={handleNext}
+            disabled={!selectedOptionId}
+            className="group inline-flex items-center gap-2.5 rounded-btn-lg bg-primary px-7 py-4 font-display text-base font-bold text-white shadow-soft transition-all duration-300 ease-out-expo hover:-translate-y-0.5 hover:shadow-glow active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-30 disabled:shadow-none disabled:hover:translate-y-0"
+          >
+            {currentStep < totalSteps - 1 ? (
+              <>
+                Siguiente
+                <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+              </>
+            ) : (
+              <>
+                Ver mi perfil
+                <CheckCircle2 className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" aria-hidden="true" />
+              </>
+            )}
+          </button>
+        </div>
       </div>
     </section>
   );
