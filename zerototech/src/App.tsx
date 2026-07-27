@@ -2,6 +2,7 @@ import { MainLayout } from "@/layouts/MainLayout";
 import { HeroSection } from "@/features/home";
 import { DiscoveryTest } from "@/features/discovery";
 import { ResultsPage, useProgress } from "@/features/results";
+import { GuideSection } from "@/features/guide";
 import type { QuizResult } from "@/features/discovery";
 
 /**
@@ -11,6 +12,7 @@ import type { QuizResult } from "@/features/discovery";
  * 1. Hero Section (landing con CTA)
  * 2. Test de descubrimiento interactivo (4 preguntas)
  * 3. Resultado del perfil + Roadmap interactivo con XP
+ * 4. Guía de Roles + Glosario IT
  *
  * El progreso se persiste en LocalStorage:
  * - Si el usuario ya hizo el test, ve directamente su resultado y roadmap.
@@ -48,6 +50,9 @@ function App() {
           onReset={resetProgress}
         />
       )}
+
+      {/* Sección 4: Guía de Roles y Glosario (siempre visible) */}
+      <GuideSection />
     </MainLayout>
   );
 }
