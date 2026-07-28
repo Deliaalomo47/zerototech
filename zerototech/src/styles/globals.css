@@ -11,17 +11,17 @@
     @apply font-body antialiased;
     background: linear-gradient(180deg, #EDE7F6 0%, #D1C4E9 100%);
     background-attachment: fixed;
-    color: #FFFFFF;
+    color: #2C1E4A;
   }
 
   h1, h2, h3, h4 {
     @apply font-display font-bold;
-    color: #FFFFFF;
+    color: #2C1E4A;
     text-wrap: balance;
   }
 
   p {
-    color: #83bf5d;
+    color: #4A3B6B;
     text-wrap: pretty;
   }
 
