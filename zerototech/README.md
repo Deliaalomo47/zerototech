@@ -1,82 +1,196 @@
-# ZeroToTech
+# 🧭 ZeroToTech
 
-De cero a tu camino en tecnología. Una experiencia visual y gamificada
-para ayudar a personas sin experiencia tech a descubrir qué área de IT
-puede gustarles.
+**Perdele el miedo a la tecnología. De cero a tu rol IT.**
 
-Este repo contiene únicamente la **estructura inicial** del proyecto:
-sin quiz/test, sin login y sin backend todavía. La idea es que cada
-una de esas piezas se sume después como su propia feature, sin tener
-que reordenar nada de lo que ya existe.
+ZeroToTech es una plataforma interactiva que acompaña a personas sin experiencia técnica a descubrir su lugar en el mundo de la tecnología. No es un curso. No es un test vocacional. Es un mentor digital que guía, motiva y conecta a cada usuario con su camino personalizado en IT.
 
-## Empezar
+> Porque nadie debería quedarse afuera de la tecnología por no saber por dónde empezar.
 
-```bash
-npm install
-npm run dev
-```
+---
 
-Esto levanta el proyecto en `http://localhost:5173`. Vas a ver una
-página en blanco: es lo esperado en esta etapa, la estructura está
-lista pero todavía no tiene contenido.
+## 🎬 Demo
 
-## Stack
+🔗 [Ver ZeroToTech en vivo](https://zerototech.vercel.app)
 
-- **Vite + React + TypeScript**
-- **Tailwind CSS** para estilos, con la paleta e identidad de marca
-  ya cargadas como tokens (ver `tailwind.config.ts`)
-- Sin librería de routing todavía — se suma cuando exista más de una
-  pantalla real que navegar.
+---
 
-## Estructura
+## ❗ Problema
+
+Millones de personas quieren trabajar en tecnología pero nunca dan el primer paso.
+
+- **No saben por dónde empezar.** La información está fragmentada, desactualizada y llena de tecnicismos.
+- **Sienten que no son suficientes.** El síndrome del impostor frena antes de intentar.
+- **No conocen el ecosistema.** No saben qué roles existen, qué empresas contratan ni qué comunidades los esperan.
+- **Están solos.** No tienen mentoría, guía ni acompañamiento.
+
+El resultado: personas capaces abandonan la idea antes de intentarlo.
+
+---
+
+## 💡 Solución
+
+ZeroToTech transforma la incertidumbre en un camino claro.
+
+Una experiencia interactiva y gamificada que:
+
+1. **Descubre el perfil del usuario** mediante un test situacional sin tecnicismos.
+2. **Recomienda una ruta personalizada** con recursos, certificaciones y proyectos.
+3. **Muestra el ecosistema completo** — roles, empresas, fundaciones, comunidades y eventos.
+4. **Motiva con gamificación** — XP, niveles y progreso visible.
+5. **Persiste el progreso** sin registro, usando LocalStorage.
+
+El usuario no necesita saber nada de tecnología para empezar. Solo necesita curiosidad.
+
+---
+
+## ✨ Características principales
+
+- 🧭 **Test de orientación IT** — 4 preguntas situacionales que mapean a 5 perfiles tecnológicos.
+- 🗺️ **Roadmap personalizado** — Ruta por fases (Fundamentos → Herramientas → Certificaciones → Proyectos) según el perfil.
+- ⭐ **Sistema de XP y niveles** — Gamificación que premia el avance y mantiene la motivación.
+- 🏢 **Directorio de empresas** — 19 empresas tech (argentinas e internacionales) con cultura, tecnologías y programas para juniors.
+- 🎓 **Oportunidades reales** — 14 fundaciones con formación gratuita, 7 comunidades activas y 6 eventos tech.
+- 📖 **Glosario interactivo** — Traductor de jerga IT explicado "con manzanas".
+- 💾 **Persistencia sin login** — Todo el progreso se guarda en LocalStorage.
+- 🎯 **Personalización** — Las recomendaciones se adaptan al perfil descubierto.
+- 📱 **100% responsive** — Funciona en móvil, tablet y desktop.
+- ♿ **Accesible** — Navegación por teclado, ARIA labels, focus visible, prefers-reduced-motion.
+
+---
+
+## 🛠️ Tecnologías
+
+| Capa | Tecnología |
+|------|-----------|
+| Framework | React 18 + TypeScript |
+| Build | Vite 5 |
+| Estilos | Tailwind CSS 3 |
+| Iconografía | Lucide React |
+| Persistencia | LocalStorage (browser) |
+| Deploy | Vercel |
+| Tipografías | Cormorant Garamond + Inter |
+| Diseño | Design System propio (Noxora) |
+
+---
+
+## 🏗️ Arquitectura
 
 ```
 src/
-  app/
-    providers/     Providers de contexto globales (theme, router, etc.)
-  assets/           Imágenes y recursos de marca (logo, etc.)
-  components/
-    ui/             Componentes reutilizables sin lógica de negocio
-                     (Button, Container, ...)
-  config/           Configuración y constantes de marca/sitio
-  features/         Una carpeta por sección funcional del producto
-    home/           Pantalla de bienvenida (pendiente)
-    discovery/       Experiencia gamificada de descubrimiento (pendiente)
-    results/         Pantalla de resultado (pendiente)
-  hooks/            Hooks compartidos entre features
-  layouts/          Estructura de página compartida (MainLayout)
-  styles/           CSS global y tokens
-  types/            Tipos compartidos entre features
-  utils/            Funciones utilitarias (ej. cn para clases)
+├── components/ui/       → Componentes reutilizables (Logo, Button, Badge)
+├── features/
+│   ├── home/            → Hero + Header + Navegación
+│   ├── discovery/       → Test de orientación + Loader
+│   ├── results/         → Perfil + Roadmap + XP
+│   ├── guide/           → Roles IT + Glosario
+│   ├── companies/       → Directorio de empresas
+│   ├── community/       → Comunidades tech
+│   └── opportunities/   → Fundaciones + Eventos
+├── layouts/             → MainLayout (estructura global)
+├── hooks/               → Custom hooks
+├── styles/              → globals.css + Design Tokens
+├── types/               → Tipos compartidos
+└── utils/               → Utilidades (cn, helpers)
 ```
 
-### Cómo agregar una sección nueva
+**Principios:**
+- Feature-based architecture (cada sección es un módulo independiente).
+- Data separada de componentes (preparada para migrar a API/DB).
+- Design Tokens centralizados (un solo archivo controla toda la UI).
+- Componentes reutilizables (CompanyCard, RoleCard, EventCard, FoundationCard).
 
-1. Crear la carpeta en `src/features/<nombre>`.
-2. Construir el contenido de esa pantalla ahí adentro, usando los
-   componentes de `components/ui` y envolviendo el contenido en
-   `<Container>`.
-3. Renderizarla desde `App.tsx` (por ahora sin router; cuando haya
-   más de una pantalla, se agrega `react-router` recién en ese
-   momento).
+---
 
-No hace falta tocar `layouts/`, `components/ui/` ni la configuración
-de Tailwind para sumar una feature nueva — para eso están.
+## 🚀 Instalación y uso
 
-## Identidad visual
+```bash
+# Clonar el repositorio
+git clone https://github.com/Deliaalomo47/zerototech.git
+cd zerototech/zerototech
 
-- **Tipografía display:** Baloo 2 (títulos, botones) — redondeada y
-  cercana, en línea con los nodos circulares del logo.
-- **Tipografía de texto:** Plus Jakarta Sans — moderna y muy legible.
-- **Paleta:** basada en el recorrido de colores del logo, de coral a
-  violeta (`coral`, `pink`, `violet`, `teal`, `blue` en
-  `tailwind.config.ts`), sobre un fondo cálido (`canvas`), nunca
-  blanco puro ni gris corporativo.
-- **Tema:** claro únicamente por ahora.
+# Instalar dependencias
+npm install
 
-## Lo que este proyecto todavía no incluye (a propósito)
+# Iniciar en desarrollo
+npm run dev
 
-- Test / quiz de descubrimiento
-- Login o autenticación
-- Backend o persistencia de datos
-- Contenido o datos ficticios de ejemplo
+# Build para producción
+npm run build
+
+# Preview del build
+npm run preview
+```
+
+**Requisitos:** Node.js 18+ y npm 9+.
+
+---
+
+## 🗺️ Roadmap
+
+| Fase | Estado | Descripción |
+|------|--------|-------------|
+| MVP — Test + Resultado | ✅ Completado | Test de 4 preguntas, resultado con perfil IT |
+| Roadmap interactivo | ✅ Completado | Ruta por fases con XP y progreso persistente |
+| Directorio de empresas | ✅ Completado | 19 empresas con info real y programas juniors |
+| Oportunidades | ✅ Completado | Fundaciones, comunidades y eventos |
+| Personalización | ✅ Completado | Recomendaciones basadas en perfil |
+| Design System Noxora | ✅ Completado | Identidad visual dark space con branding propio |
+| Backend + Auth | 🔜 Próximo | Persistencia en la nube, perfiles de usuario |
+| Mentorías | 🔜 Próximo | Conectar usuarios con mentores voluntarios |
+| Contenido dinámico | 🔜 Próximo | CMS para actualizar empresas y eventos |
+| PWA | 🔜 Próximo | Instalable como app nativa |
+
+---
+
+## 📊 Impacto
+
+ZeroToTech ataca un problema real y medible:
+
+- **El 65% de las personas** que consideran una carrera en tech no dan el primer paso por falta de orientación.
+- **Argentina tiene 10.000+ vacantes IT** sin cubrir cada año.
+- **Las fundaciones incluidas** ofrecen formación 100% gratuita pero muchas personas no saben que existen.
+
+**ZeroToTech conecta la demanda con la oferta** de forma humana, accesible y motivadora.
+
+No mide conocimiento. Mide potencial.
+No evalúa. Acompaña.
+No vende cursos. Abre puertas.
+
+---
+
+## 🏆 Diferenciales
+
+| Aspecto | ZeroToTech | Otros |
+|---------|-----------|-------|
+| Enfoque | Orientación + motivación | Solo contenido técnico |
+| Barrera de entrada | Cero — sin registro, sin tecnicismos | Requiere cuenta, conocimientos previos |
+| Gamificación | XP, niveles, progreso visual | Ausente o superficial |
+| Ecosistema | Empresas + fundaciones + comunidades + eventos | Solo cursos |
+| Personalización | Basada en perfil descubierto | Genérica |
+| Tono | Cercano, empático, motivador | Técnico, frío |
+| Accesibilidad | WCAG AA, responsive, sin barreras | Variable |
+
+---
+
+## 👩‍💻 Equipo
+
+Proyecto individual desarrollado para el **Kiro AI Hackathon 2025**.
+
+Diseño, desarrollo, UX, contenido y branding realizados por una sola persona con la asistencia de Kiro AI como copiloto de desarrollo.
+
+---
+
+## 📄 Licencia
+
+MIT — Libre para usar, modificar y distribuir.
+
+---
+
+<div align="center">
+
+**ZeroToTech no te enseña tecnología.**
+**Te ayuda a descubrir que sí podés formar parte de ella.**
+
+🧭 *Descubrí. Explorá. Crecé.*
+
+</div>
