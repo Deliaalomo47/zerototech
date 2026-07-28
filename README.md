@@ -11,7 +11,6 @@ ZeroToTech es una plataforma interactiva que acompaña a personas sin experienci
 ## 🎬 Demo
 
 - 🔗 [Demo principal](https://zerototech-mu.vercel.app/)
-- 🔗 [Versión alternativa](https://zerototech.vercel.app/)
 
 ---
 
