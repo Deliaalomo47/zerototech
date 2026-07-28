@@ -9,7 +9,7 @@
 
   body {
     @apply font-body antialiased;
-    background: linear-gradient(180deg, #EDE7F6 0%, #D1C4E9 100%);
+    background: #2A223A;
     background-attachment: fixed;
     color: #2C1E4A;
   }
