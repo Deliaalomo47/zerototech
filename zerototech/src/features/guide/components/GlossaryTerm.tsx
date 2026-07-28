@@ -26,8 +26,8 @@ export function GlossaryTerm({ term }: GlossaryTermProps) {
         className={cn(
           "rounded-lg border px-4 py-2.5 text-small font-medium transition-all duration-150",
           open
-            ? "border-violet/40 bg-violet-glow text-violet shadow-glow-violet"
-            : "border-border bg-surface text-text-muted hover:border-violet/30 hover:text-text"
+            ? "border-primary/40 bg-primary/10 text-primary shadow-glow-primary"
+            : "border-border bg-surface text-text-muted hover:border-primary/30 hover:text-text"
         )}
         aria-expanded={open}>
         {term.term}

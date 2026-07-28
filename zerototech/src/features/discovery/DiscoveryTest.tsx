@@ -80,7 +80,7 @@ export function DiscoveryTest({ onComplete }: DiscoveryTestProps) {
             type="button"
             onClick={handleNext}
             disabled={!selectedOptionId}
-            className="group inline-flex items-center gap-2.5 rounded-xl bg-gradient-brand px-7 py-4 text-body font-semibold text-indigo-deep shadow-glow transition-all duration-150 hover:scale-[1.02] hover:shadow-[0_0_24px_rgba(127,255,208,0.2)] active:scale-[0.98] disabled:opacity-30 disabled:pointer-events-none"
+            className="group inline-flex items-center gap-2.5 rounded-xl bg-gradient-brand px-7 py-4 text-body font-semibold text-background shadow-glow transition-all duration-150 hover:scale-[1.02] hover:shadow-[0_0_24px_rgba(127,255,208,0.2)] active:scale-[0.98] disabled:opacity-30 disabled:pointer-events-none"
           >
             {currentStep < totalSteps - 1 ? "Siguiente" : "Ver mi perfil"}
             <ArrowRight className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5" aria-hidden="true" />

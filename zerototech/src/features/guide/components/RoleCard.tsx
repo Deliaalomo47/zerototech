@@ -64,7 +64,7 @@ export function RoleCard({ role }: RoleCardProps) {
         <p className="text-small text-text-secondary leading-relaxed">{role.howToLearn}</p>
       </div>
 
-      <div className="rounded-lg border border-border bg-violet-glow p-4">
+      <div className="rounded-lg border border-border bg-surface-hover p-4">
         <div className="mb-1.5 flex items-center gap-2">
           <Building2 className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
           <span className="text-caption font-semibold uppercase tracking-wider text-text-muted">Empresas</span>

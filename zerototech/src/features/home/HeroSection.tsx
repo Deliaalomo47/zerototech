@@ -43,7 +43,7 @@ export function HeroSection() {
       <div className="animate-fade-up-3">
         <button
           onClick={handleScroll}
-          className="group relative inline-flex items-center gap-3 rounded-2xl bg-gradient-brand px-8 py-4 font-body text-body font-semibold text-indigo-deep shadow-glow transition-all duration-150 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(127,255,208,0.2)] active:scale-[0.98]"
+          className="group relative inline-flex items-center gap-3 rounded-2xl bg-gradient-brand px-8 py-4 font-body text-body font-semibold text-background shadow-glow transition-all duration-150 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(127,255,208,0.2)] active:scale-[0.98]"
         >
           Comenzar mi recorrido
           <ArrowDown className="h-4 w-4 transition-transform duration-150 group-hover:translate-y-0.5" aria-hidden="true" />
@@ -51,7 +51,7 @@ export function HeroSection() {
       </div>
 
       {/* Tagline */}
-      <p className="mt-8 animate-fade-up-4 text-caption text-text-faint uppercase tracking-widest">
+      <p className="mt-8 animate-fade-up-4 text-caption text-text-muted uppercase tracking-widest">
         Descubrí. Explorá. Crecé.
       </p>
     </section>

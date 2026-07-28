@@ -30,7 +30,7 @@ export function OptionCard({ text, icon, isSelected, onSelect }: OptionCardProps
     >
       <div className={cn(
         "flex h-11 w-11 shrink-0 items-center justify-center rounded-lg transition-all duration-150",
-        isSelected ? "bg-gradient-brand text-indigo-deep" : "bg-surface-raised text-text-muted group-hover:text-violet"
+        isSelected ? "bg-gradient-brand text-background" : "bg-surface-raised text-text-muted group-hover:text-primary"
       )}>
         <Icon className="h-5 w-5" aria-hidden="true" />
       </div>
@@ -44,7 +44,7 @@ export function OptionCard({ text, icon, isSelected, onSelect }: OptionCardProps
 
       {isSelected && (
         <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-aqua animate-scale-in">
-          <Check className="h-3.5 w-3.5 text-indigo-deep" strokeWidth={3} aria-hidden="true" />
+          <Check className="h-3.5 w-3.5 text-background" strokeWidth={3} aria-hidden="true" />
         </div>
       )}
     </button>

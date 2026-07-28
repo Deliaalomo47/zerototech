@@ -26,7 +26,7 @@ export function AreaFilter({ selected, onChange }: AreaFilterProps) {
           className={cn(
             "rounded-lg px-4 py-2 text-small font-medium transition-all duration-150",
             selected === f.value
-              ? "bg-gradient-brand text-indigo-deep shadow-glow"
+              ? "bg-gradient-brand text-background shadow-glow"
               : "text-text-muted hover:text-text hover:bg-surface-raised"
           )}>
           {f.label}

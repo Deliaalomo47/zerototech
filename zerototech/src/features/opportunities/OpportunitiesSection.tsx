@@ -84,10 +84,10 @@ export function OpportunitiesSection({ userProfile }: OpportunitiesSectionProps)
       {/* Events */}
       <div>
         <div className="mb-6 flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-lavender-light">
-            <Calendar className="h-4.5 w-4.5 text-indigo" aria-hidden="true" />
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-surface-hover">
+            <Calendar className="h-4.5 w-4.5 text-primary" aria-hidden="true" />
           </div>
-          <h3 className="text-small font-semibold uppercase tracking-wider text-indigo-muted">
+          <h3 className="text-small font-semibold uppercase tracking-wider text-text-muted">
             Eventos tecnológicos
           </h3>
         </div>

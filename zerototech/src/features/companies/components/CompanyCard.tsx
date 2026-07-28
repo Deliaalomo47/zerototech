@@ -19,7 +19,7 @@ export function CompanyCard({ company }: CompanyCardProps) {
         </div>
         <div>
           <h3 className="text-body font-bold text-text">{company.name}</h3>
-          <p className="text-caption text-text-faint">{company.group === "argentina" ? "Empresa argentina" : "Internacional"}</p>
+          <p className="text-caption text-text-muted">{company.group === "argentina" ? "Empresa argentina" : "Internacional"}</p>
         </div>
       </div>
 
@@ -30,7 +30,7 @@ export function CompanyCard({ company }: CompanyCardProps) {
       <div className="mb-5">
         <div className="mb-2 flex items-center gap-2">
           <Lightbulb className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-          <span className="text-caption font-semibold uppercase tracking-wider text-text-faint">A qué se dedica</span>
+          <span className="text-caption font-semibold uppercase tracking-wider text-text-muted">A qué se dedica</span>
         </div>
         <p className="text-small text-text-muted leading-relaxed">{company.focus}</p>
       </div>
@@ -39,7 +39,7 @@ export function CompanyCard({ company }: CompanyCardProps) {
       <div className="mb-5">
         <div className="mb-2.5 flex items-center gap-2">
           <Code2 className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
-          <span className="text-caption font-semibold uppercase tracking-wider text-text-faint">Tecnologías</span>
+          <span className="text-caption font-semibold uppercase tracking-wider text-text-muted">Tecnologías</span>
         </div>
         <div className="flex flex-wrap gap-2">
           {company.technologies.map((tech) => (
@@ -54,7 +54,7 @@ export function CompanyCard({ company }: CompanyCardProps) {
       <div className="mb-5">
         <div className="mb-2 flex items-center gap-2">
           <Users className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-          <span className="text-caption font-semibold uppercase tracking-wider text-text-faint">Roles que buscan</span>
+          <span className="text-caption font-semibold uppercase tracking-wider text-text-muted">Roles que buscan</span>
         </div>
         <p className="text-small text-text-muted">{company.hiringRoles.join(" · ")}</p>
       </div>
@@ -80,7 +80,7 @@ export function CompanyCard({ company }: CompanyCardProps) {
         href={company.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="group inline-flex items-center gap-2 rounded-xl bg-surface-raised px-5 py-2.5 text-small font-semibold text-text-muted transition-all duration-150 hover:bg-gradient-brand hover:text-indigo-deep hover:shadow-glow"
+        className="group inline-flex items-center gap-2 rounded-xl bg-surface-hover px-5 py-2.5 text-small font-semibold text-text transition-all duration-150 hover:bg-gradient-brand hover:text-background hover:shadow-glow"
       >
         Conocer más
         <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />

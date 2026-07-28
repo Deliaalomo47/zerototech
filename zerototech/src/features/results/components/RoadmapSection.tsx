@@ -21,14 +21,14 @@ export function RoadmapSection({ phases, isNodeCompleted, onMarkCompleted }: Roa
             <div className="mb-5 flex items-center gap-4">
               <div className={cn(
                 "flex h-11 w-11 items-center justify-center rounded-xl text-small font-bold",
-                complete ? "bg-aqua text-indigo-deep shadow-glow-aqua" : "bg-surface-raised text-violet"
+                complete ? "bg-accent text-background shadow-glow-accent" : "bg-surface-raised text-primary"
               )}>
                 {phase.phase}
               </div>
               <h3 className="flex-1 font-display text-title-sm text-text">{phase.title}</h3>
               <span className={cn(
                 "rounded-full px-3 py-1 text-caption font-bold",
-                complete ? "bg-aqua-glow text-aqua" : "bg-surface-raised text-text-faint"
+                complete ? "bg-aqua-glow text-accent" : "bg-surface-raised text-text-muted"
               )}>
                 {done}/{total}
               </span>

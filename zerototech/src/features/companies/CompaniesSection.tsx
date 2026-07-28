@@ -28,7 +28,7 @@ export function CompaniesSection() {
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-aqua-glow">
             <Building2 className="h-4.5 w-4.5 text-aqua" aria-hidden="true" />
           </div>
-          <h3 className="text-small font-semibold uppercase tracking-wider text-text-faint">
+          <h3 className="text-small font-semibold uppercase tracking-wider text-text-muted">
             Empresas argentinas
           </h3>
         </div>
@@ -40,10 +40,10 @@ export function CompaniesSection() {
       {/* International companies */}
       <div>
         <div className="mb-6 flex items-center gap-3 animate-fade-up-1">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-violet-glow">
-            <Globe className="h-4.5 w-4.5 text-violet" aria-hidden="true" />
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-surface-hover">
+            <Globe className="h-4.5 w-4.5 text-primary" aria-hidden="true" />
           </div>
-          <h3 className="text-small font-semibold uppercase tracking-wider text-text-faint">
+          <h3 className="text-small font-semibold uppercase tracking-wider text-text-muted">
             Internacionales con presencia en Argentina
           </h3>
         </div>
