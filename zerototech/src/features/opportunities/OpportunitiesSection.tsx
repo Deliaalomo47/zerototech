@@ -46,7 +46,7 @@ export function OpportunitiesSection({ userProfile }: OpportunitiesSectionProps)
       {/* Foundations */}
       <div className="mb-18">
         <div className="mb-6 flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-peach-light">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-surface-hover">
             <GraduationCap className="h-4.5 w-4.5 text-accent" aria-hidden="true" />
           </div>
           <h3 className="text-small font-semibold uppercase tracking-wider text-text-muted">
@@ -67,7 +67,7 @@ export function OpportunitiesSection({ userProfile }: OpportunitiesSectionProps)
       {/* Communities */}
       <div className="mb-18">
         <div className="mb-6 flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-mint-light">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-surface-hover">
             <Heart className="h-4.5 w-4.5 text-accent" aria-hidden="true" />
           </div>
           <h3 className="text-small font-semibold uppercase tracking-wider text-text-muted">
