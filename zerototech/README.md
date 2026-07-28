@@ -174,7 +174,7 @@ No vende cursos. Abre puertas.
 
 ## 👩‍💻 Equipo
 
-Proyecto individual desarrollado para el **Kiro AI Hackathon 2025**.
+Proyecto individual desarrollado para el **Kiro AI Hackathon 2026**.
 
 Diseño, desarrollo, UX, contenido y branding realizados por una sola persona con la asistencia de Kiro AI como copiloto de desarrollo.
 

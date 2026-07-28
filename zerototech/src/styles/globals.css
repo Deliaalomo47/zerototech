@@ -8,16 +8,18 @@
   }
 
   body {
-    @apply bg-background text-text font-body antialiased;
+    @apply bg-background font-body antialiased;
+    color: #FFFFFF;
   }
 
   h1, h2, h3, h4 {
-    @apply font-display text-text font-bold;
+    @apply font-display font-bold;
+    color: #FFFFFF;
     text-wrap: balance;
   }
 
   p {
-    @apply text-text-secondary;
+    color: #D6D2E8;
     text-wrap: pretty;
   }
 
