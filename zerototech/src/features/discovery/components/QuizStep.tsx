@@ -8,17 +8,17 @@ interface QuizStepProps {
 }
 
 /**
- * Quiz step — Noxora Holographic.
+ * Quiz step — Noxora Dark Space.
  */
 export function QuizStep({ question, selectedOptionId, onSelectOption }: QuizStepProps) {
   return (
     <div className="animate-fade-up">
-      <h2 className="mb-3 font-display text-title-sm text-indigo sm:text-title">
+      <h2 className="mb-3 font-display text-title-sm text-text sm:text-title">
         {question.question}
       </h2>
 
       {question.hint && (
-        <p className="mb-8 text-body text-muted">{question.hint}</p>
+        <p className="mb-8 text-body text-text-muted">{question.hint}</p>
       )}
 
       <div className="stagger flex flex-col gap-3">

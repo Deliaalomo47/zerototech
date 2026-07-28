@@ -16,38 +16,31 @@ function getCurrentLevel(xp: number): XPLevel {
   return levels[0];
 }
 
-interface XPBarProps {
-  totalXP: number;
-}
+interface XPBarProps { totalXP: number; }
 
 /**
- * XP bar — Noxora Holographic.
- * Peach accent for rewards, glass surface.
+ * XP bar — Noxora Dark Space. Peach accent.
  */
 export function XPBar({ totalXP }: XPBarProps) {
   const level = getCurrentLevel(totalXP);
-  const pct = Math.min(
-    Math.round(((totalXP - level.minXP) / (level.maxXP - level.minXP)) * 100), 100
-  );
+  const pct = Math.min(Math.round(((totalXP - level.minXP) / (level.maxXP - level.minXP)) * 100), 100);
 
   return (
     <div className="animate-fade-up-1 glass-card flex items-center gap-4 rounded-xl p-5">
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-peach-light shadow-glow-peach">
-        <Zap className="h-5 w-5 text-peach-dark" aria-hidden="true" />
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-peach-glow">
+        <Zap className="h-5 w-5 text-peach" aria-hidden="true" />
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex items-baseline gap-2 mb-2">
-          <span className="text-small font-bold text-indigo">Nivel {level.level}</span>
-          <span className="text-caption text-muted">{level.name}</span>
+          <span className="text-small font-bold text-text">Nivel {level.level}</span>
+          <span className="text-caption text-text-muted">{level.name}</span>
         </div>
         <div className="flex items-center gap-3">
-          <div className="h-2 flex-1 overflow-hidden rounded-full bg-indigo-faint"
-            role="progressbar" aria-valuenow={totalXP}
-            aria-valuemin={level.minXP} aria-valuemax={level.maxXP}>
-            <div className="h-full rounded-full bg-peach shadow-glow-peach transition-all duration-500 ease-elegant"
-              style={{ width: `${pct}%` }} />
+          <div className="h-2 flex-1 overflow-hidden rounded-full bg-surface-raised"
+            role="progressbar" aria-valuenow={totalXP} aria-valuemin={level.minXP} aria-valuemax={level.maxXP}>
+            <div className="h-full rounded-full bg-peach transition-all duration-500 ease-elegant" style={{ width: `${pct}%` }} />
           </div>
-          <span className="text-caption font-bold text-peach-dark">{totalXP} XP</span>
+          <span className="text-caption font-bold text-peach">{totalXP} XP</span>
         </div>
       </div>
     </div>

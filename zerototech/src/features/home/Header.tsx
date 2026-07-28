@@ -1,16 +1,21 @@
 import { useState } from "react";
-import { Compass, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/utils/cn";
+import { Logo } from "@/components/ui/Logo";
 
 const navItems = [
   { id: "inicio", label: "Inicio" },
-  { id: "descubri", label: "Descubrí tu pasión" },
-  { id: "roles", label: "Roles IT" },
+  { id: "descubri", label: "Descubrí" },
+  { id: "roles", label: "Roles" },
   { id: "empresas", label: "Empresas" },
-  { id: "oportunidades", label: "Oportunidades" },
+  { id: "oportunidades", label: "Comunidad" },
   { id: "roadmap", label: "Roadmap" },
 ];
 
+/**
+ * Header — Noxora Dark Space.
+ * Dark glass navigation, new Logo component, subtle border.
+ */
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -20,38 +25,36 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-surface-glass backdrop-blur-glass border-b border-border">
+    <header className="sticky top-0 z-50 w-full bg-surface-glass backdrop-blur-lg border-b border-border">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <a href="/" className="group flex items-center gap-2.5" aria-label="ZeroToTech">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-indigo shadow-soft transition-transform duration-300 ease-elegant group-hover:scale-105">
-            <Compass className="h-4.5 w-4.5 text-mint" aria-hidden="true" />
-          </div>
-          <span className="font-display text-xl font-bold text-indigo">
-            Zero<span className="text-lavender">To</span>Tech
-          </span>
+        <a href="/" aria-label="ZeroToTech — Inicio">
+          <Logo size={36} />
         </a>
 
+        {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-1" aria-label="Navegación">
           {navItems.map((item) => (
             <button key={item.id} type="button" onClick={() => scrollTo(item.id)}
-              className="rounded-lg px-3 py-2 text-small font-medium text-muted transition-all duration-200 hover:text-indigo hover:bg-indigo-faint">
+              className="rounded-lg px-3 py-2 text-small font-medium text-text-muted transition-all duration-150 hover:text-aqua hover:bg-aqua-glow">
               {item.label}
             </button>
           ))}
         </nav>
 
+        {/* Mobile toggle */}
         <button type="button" onClick={() => setMenuOpen(!menuOpen)}
-          className="flex h-9 w-9 items-center justify-center rounded-lg lg:hidden hover:bg-indigo-faint"
+          className="flex h-9 w-9 items-center justify-center rounded-lg lg:hidden text-text-muted hover:text-aqua hover:bg-aqua-glow transition-colors"
           aria-label="Menú">
-          {menuOpen ? <X className="h-5 w-5 text-indigo" /> : <Menu className="h-5 w-5 text-indigo" />}
+          {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
+      {/* Mobile nav */}
       {menuOpen && (
         <nav className="lg:hidden border-t border-border bg-surface-raised p-4 animate-fade-in">
           {navItems.map((item) => (
             <button key={item.id} type="button" onClick={() => scrollTo(item.id)}
-              className={cn("block w-full rounded-lg px-4 py-3 text-left text-small font-medium text-muted hover:text-indigo hover:bg-indigo-faint")}>
+              className={cn("block w-full rounded-lg px-4 py-3 text-left text-small font-medium text-text-muted hover:text-aqua hover:bg-aqua-glow transition-colors")}>
               {item.label}
             </button>
           ))}

@@ -1,12 +1,7 @@
 import { cn } from "@/utils/cn";
 import type { ITCategory } from "@/features/discovery/types";
 
-interface FilterOption {
-  value: ITCategory | "all";
-  label: string;
-}
-
-const filters: FilterOption[] = [
+const filters: { value: ITCategory | "all"; label: string }[] = [
   { value: "all", label: "Todos" },
   { value: "soporte", label: "Soporte" },
   { value: "cloud", label: "Cloud" },
@@ -20,31 +15,20 @@ interface AreaFilterProps {
   onChange: (value: ITCategory | "all") => void;
 }
 
-/**
- * Area filter — Noxora Holographic.
- * Glass container, indigo active pill with glow, lavender hover.
- */
 export function AreaFilter({ selected, onChange }: AreaFilterProps) {
   return (
-    <div
-      className="inline-flex items-center gap-1 rounded-xl border border-border bg-surface-glass p-1.5 backdrop-blur-xs shadow-soft"
-      role="radiogroup"
-      aria-label="Filtrar por área"
-    >
+    <div className="inline-flex items-center gap-1 rounded-xl border border-border bg-surface p-1.5"
+      role="radiogroup" aria-label="Filtrar por área">
       {filters.map((f) => (
-        <button
-          key={f.value}
-          type="button"
-          role="radio"
+        <button key={f.value} type="button" role="radio"
           aria-checked={selected === f.value}
           onClick={() => onChange(f.value)}
           className={cn(
-            "rounded-lg px-4 py-2 text-small font-medium transition-all duration-300 ease-elegant",
+            "rounded-lg px-4 py-2 text-small font-medium transition-all duration-150",
             selected === f.value
-              ? "bg-gradient-indigo text-white shadow-glow-indigo"
-              : "text-muted hover:text-indigo hover:bg-lavender-light"
-          )}
-        >
+              ? "bg-gradient-brand text-indigo-deep shadow-glow"
+              : "text-text-muted hover:text-text hover:bg-surface-raised"
+          )}>
           {f.label}
         </button>
       ))}
