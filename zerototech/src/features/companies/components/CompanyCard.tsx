@@ -15,7 +15,7 @@ export function CompanyCard({ company }: CompanyCardProps) {
       {/* Header */}
       <div className="mb-5 flex items-center gap-4">
         <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-surface-raised">
-          <Building2 className="h-6 w-6 text-violet" aria-hidden="true" />
+          <Building2 className="h-6 w-6 text-primary" aria-hidden="true" />
         </div>
         <div>
           <h3 className="text-body font-bold text-text">{company.name}</h3>
@@ -29,7 +29,7 @@ export function CompanyCard({ company }: CompanyCardProps) {
       {/* Focus */}
       <div className="mb-5">
         <div className="mb-2 flex items-center gap-2">
-          <Lightbulb className="h-3.5 w-3.5 text-peach" aria-hidden="true" />
+          <Lightbulb className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
           <span className="text-caption font-semibold uppercase tracking-wider text-text-faint">A qué se dedica</span>
         </div>
         <p className="text-small text-text-muted leading-relaxed">{company.focus}</p>
@@ -38,7 +38,7 @@ export function CompanyCard({ company }: CompanyCardProps) {
       {/* Technologies */}
       <div className="mb-5">
         <div className="mb-2.5 flex items-center gap-2">
-          <Code2 className="h-3.5 w-3.5 text-lavender" aria-hidden="true" />
+          <Code2 className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
           <span className="text-caption font-semibold uppercase tracking-wider text-text-faint">Tecnologías</span>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -53,7 +53,7 @@ export function CompanyCard({ company }: CompanyCardProps) {
       {/* Hiring roles */}
       <div className="mb-5">
         <div className="mb-2 flex items-center gap-2">
-          <Users className="h-3.5 w-3.5 text-mint" aria-hidden="true" />
+          <Users className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
           <span className="text-caption font-semibold uppercase tracking-wider text-text-faint">Roles que buscan</span>
         </div>
         <p className="text-small text-text-muted">{company.hiringRoles.join(" · ")}</p>
@@ -63,8 +63,8 @@ export function CompanyCard({ company }: CompanyCardProps) {
       {company.studentPrograms && (
         <div className="mb-5">
           <div className="mb-2 flex items-center gap-2">
-            <GraduationCap className="h-3.5 w-3.5 text-peach" aria-hidden="true" />
-            <span className="text-caption font-semibold uppercase tracking-wider text-indigo-muted">Para estudiantes</span>
+            <GraduationCap className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
+            <span className="text-caption font-semibold uppercase tracking-wider text-text-muted">Para estudiantes</span>
           </div>
           <p className="text-small text-muted">{company.studentPrograms}</p>
         </div>

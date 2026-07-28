@@ -23,11 +23,11 @@ export function EventCard({ event, isRecommended }: EventCardProps) {
       {/* Header */}
       <div className="mb-4 flex items-center gap-3">
         <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-lavender-light">
-          <Calendar className="h-5 w-5 text-indigo" aria-hidden="true" />
+          <Calendar className="h-5 w-5 text-primary" aria-hidden="true" />
         </div>
         <div>
-          <h3 className="text-body font-bold text-indigo">{event.name}</h3>
-          <span className="text-caption text-muted">{event.frequency}</span>
+          <h3 className="text-body font-bold text-text">{event.name}</h3>
+          <span className="text-caption text-text-muted">{event.frequency}</span>
         </div>
       </div>
 
@@ -36,10 +36,10 @@ export function EventCard({ event, isRecommended }: EventCardProps) {
 
       {/* Topics */}
       <div className="mb-4">
-        <p className="mb-2 text-caption font-semibold uppercase tracking-wider text-indigo-muted">Temáticas</p>
+        <p className="mb-2 text-caption font-semibold uppercase tracking-wider text-text-muted">Temáticas</p>
         <div className="flex flex-wrap gap-2">
           {event.topics.map((t) => (
-            <span key={t} className="rounded-md border border-border bg-lavender-light px-2.5 py-1 text-caption font-medium text-indigo">
+            <span key={t} className="rounded-md border border-border bg-surface-hover px-2.5 py-1 text-caption font-medium text-text-secondary">
               {t}
             </span>
           ))}

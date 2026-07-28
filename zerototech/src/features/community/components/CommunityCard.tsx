@@ -7,9 +7,9 @@ interface CommunityCardProps {
 }
 
 const accentStyles = {
-  mint: { bg: "bg-mint-light", text: "text-mint-dark", border: "border-mint/30" },
-  lavender: { bg: "bg-lavender-light", text: "text-indigo", border: "border-lavender/30" },
-  peach: { bg: "bg-peach-light", text: "text-peach-dark", border: "border-peach/30" },
+  mint: { bg: "bg-mint-light", text: "text-accent", border: "border-mint/30" },
+  lavender: { bg: "bg-lavender-light", text: "text-primary", border: "border-lavender/30" },
+  peach: { bg: "bg-peach-light", text: "text-accent", border: "border-peach/30" },
 };
 
 /**
@@ -25,18 +25,18 @@ export function CommunityCard({ community }: CommunityCardProps) {
         <div className={cn("flex h-10 w-10 items-center justify-center rounded-xl", accent.bg)}>
           <Users className={cn("h-5 w-5", accent.text)} aria-hidden="true" />
         </div>
-        <h3 className="text-body font-bold text-indigo">{community.name}</h3>
+        <h3 className="text-body font-bold text-text">{community.name}</h3>
       </div>
 
       {/* Description */}
-      <p className="mb-5 text-small text-muted leading-relaxed">{community.description}</p>
+      <p className="mb-5 text-small text-text-secondary leading-relaxed">{community.description}</p>
 
       {/* Activities */}
       <div className="mb-5">
-        <p className="mb-2 text-caption font-semibold uppercase tracking-wider text-indigo-muted">Actividades</p>
+        <p className="mb-2 text-caption font-semibold uppercase tracking-wider text-text-muted">Actividades</p>
         <div className="flex flex-wrap gap-2">
           {community.activities.map((a) => (
-            <span key={a} className={cn("rounded-md border px-2.5 py-1 text-caption font-medium text-indigo", accent.border, accent.bg)}>
+            <span key={a} className={cn("rounded-md border px-2.5 py-1 text-caption font-medium text-text-secondary", accent.border, accent.bg)}>
               {a}
             </span>
           ))}

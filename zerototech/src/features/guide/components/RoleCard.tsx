@@ -12,30 +12,30 @@ export function RoleCard({ role }: RoleCardProps) {
         </div>
         <div>
           <h3 className="text-body font-bold text-text">{role.roleName}</h3>
-          <p className="text-caption text-violet">{role.entryLevel.split(".")[0]}</p>
+          <p className="text-caption text-primary">{role.entryLevel.split(".")[0]}</p>
         </div>
       </div>
 
       <div className="mb-5">
         <div className="mb-2 flex items-center gap-2">
-          <Target className="h-3.5 w-3.5 text-aqua" aria-hidden="true" />
-          <span className="text-caption font-semibold uppercase tracking-wider text-text-faint">Qué hace</span>
+          <Target className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
+          <span className="text-caption font-semibold uppercase tracking-wider text-text-muted">Qué hace</span>
         </div>
-        <p className="text-small text-text-muted leading-relaxed">{role.whatTheyDo}</p>
+        <p className="text-small text-text-secondary leading-relaxed">{role.whatTheyDo}</p>
       </div>
 
       <div className="mb-5">
         <div className="mb-2 flex items-center gap-2">
-          <Brain className="h-3.5 w-3.5 text-violet" aria-hidden="true" />
-          <span className="text-caption font-semibold uppercase tracking-wider text-text-faint">Problemas que resuelve</span>
+          <Brain className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+          <span className="text-caption font-semibold uppercase tracking-wider text-text-muted">Problemas que resuelve</span>
         </div>
-        <p className="text-small text-text-muted leading-relaxed">{role.problemsSolved}</p>
+        <p className="text-small text-text-secondary leading-relaxed">{role.problemsSolved}</p>
       </div>
 
       <div className="mb-5">
         <div className="mb-2.5 flex items-center gap-2">
-          <Code2 className="h-3.5 w-3.5 text-violet" aria-hidden="true" />
-          <span className="text-caption font-semibold uppercase tracking-wider text-text-faint">Tecnologías</span>
+          <Code2 className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+          <span className="text-caption font-semibold uppercase tracking-wider text-text-muted">Tecnologías</span>
         </div>
         <div className="flex flex-wrap gap-2">
           {role.technologies.map((t) => (
@@ -46,8 +46,8 @@ export function RoleCard({ role }: RoleCardProps) {
 
       <div className="mb-5">
         <div className="mb-2.5 flex items-center gap-2">
-          <TrendingUp className="h-3.5 w-3.5 text-peach" aria-hidden="true" />
-          <span className="text-caption font-semibold uppercase tracking-wider text-text-faint">Habilidades</span>
+          <TrendingUp className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
+          <span className="text-caption font-semibold uppercase tracking-wider text-text-muted">Habilidades</span>
         </div>
         <div className="flex flex-wrap gap-2">
           {role.skills.map((s) => (
@@ -58,18 +58,18 @@ export function RoleCard({ role }: RoleCardProps) {
 
       <div className="mb-5">
         <div className="mb-2 flex items-center gap-2">
-          <BookOpen className="h-3.5 w-3.5 text-aqua" aria-hidden="true" />
-          <span className="text-caption font-semibold uppercase tracking-wider text-text-faint">Cómo aprender</span>
+          <BookOpen className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
+          <span className="text-caption font-semibold uppercase tracking-wider text-text-muted">Cómo aprender</span>
         </div>
-        <p className="text-small text-text-muted leading-relaxed">{role.howToLearn}</p>
+        <p className="text-small text-text-secondary leading-relaxed">{role.howToLearn}</p>
       </div>
 
       <div className="rounded-lg border border-border bg-violet-glow p-4">
         <div className="mb-1.5 flex items-center gap-2">
-          <Building2 className="h-3.5 w-3.5 text-violet" aria-hidden="true" />
-          <span className="text-caption font-semibold uppercase tracking-wider text-text-faint">Empresas</span>
+          <Building2 className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+          <span className="text-caption font-semibold uppercase tracking-wider text-text-muted">Empresas</span>
         </div>
-        <p className="text-small text-text-muted">{role.companies.join(" · ")}</p>
+        <p className="text-small text-text-secondary">{role.companies.join(" · ")}</p>
       </div>
     </article>
   );

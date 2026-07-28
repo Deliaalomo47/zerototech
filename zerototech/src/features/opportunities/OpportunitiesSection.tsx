@@ -35,10 +35,10 @@ export function OpportunitiesSection({ userProfile }: OpportunitiesSectionProps)
     <section id="oportunidades" className="mx-auto max-w-5xl px-6 py-22">
       {/* Header */}
       <div className="mb-12 animate-fade-up">
-        <h2 className="font-display text-title text-indigo sm:text-[2.25rem]">
+        <h2 className="font-display text-title text-text sm:text-[2.25rem]">
           Oportunidades para crecer
         </h2>
-        <p className="mt-3 max-w-2xl text-subtitle text-muted">
+        <p className="mt-3 max-w-2xl text-subtitle text-text-secondary">
           Encontrá formación gratuita, comunidades y eventos para dar tus primeros pasos en tecnología.
         </p>
       </div>
@@ -47,9 +47,9 @@ export function OpportunitiesSection({ userProfile }: OpportunitiesSectionProps)
       <div className="mb-18">
         <div className="mb-6 flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-peach-light">
-            <GraduationCap className="h-4.5 w-4.5 text-indigo" aria-hidden="true" />
+            <GraduationCap className="h-4.5 w-4.5 text-accent" aria-hidden="true" />
           </div>
-          <h3 className="text-small font-semibold uppercase tracking-wider text-indigo-muted">
+          <h3 className="text-small font-semibold uppercase tracking-wider text-text-muted">
             Fundaciones y organizaciones
           </h3>
         </div>
@@ -68,9 +68,9 @@ export function OpportunitiesSection({ userProfile }: OpportunitiesSectionProps)
       <div className="mb-18">
         <div className="mb-6 flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-mint-light">
-            <Heart className="h-4.5 w-4.5 text-indigo" aria-hidden="true" />
+            <Heart className="h-4.5 w-4.5 text-accent" aria-hidden="true" />
           </div>
-          <h3 className="text-small font-semibold uppercase tracking-wider text-indigo-muted">
+          <h3 className="text-small font-semibold uppercase tracking-wider text-text-muted">
             Comunidades tecnológicas
           </h3>
         </div>

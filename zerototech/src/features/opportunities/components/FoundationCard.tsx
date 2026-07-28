@@ -23,10 +23,10 @@ export function FoundationCard({ foundation, isRecommended }: FoundationCardProp
       {/* Header */}
       <div className="mb-4 flex items-center gap-3">
         <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-peach-light">
-          <GraduationCap className="h-5 w-5 text-indigo" aria-hidden="true" />
+          <GraduationCap className="h-5 w-5 text-accent" aria-hidden="true" />
         </div>
         <div>
-          <h3 className="text-body font-bold text-indigo">{foundation.name}</h3>
+          <h3 className="text-body font-bold text-text">{foundation.name}</h3>
           {foundation.isFree && (
             <span className="text-caption font-semibold text-mint-dark">Gratuito</span>
           )}
