@@ -32,7 +32,7 @@ export function OpportunitiesSection({ userProfile }: OpportunitiesSectionProps)
   });
 
   return (
-    <section id="oportunidades" className="mx-auto max-w-5xl px-6 py-22">
+    <section id="oportunidades" className="mx-auto max-w-5xl px-6 py-22 text-green-500">
       {/* Header */}
       <div className="mb-12 animate-fade-up">
         <h2 className="font-display text-title text-accent sm:text-[2.25rem]">
