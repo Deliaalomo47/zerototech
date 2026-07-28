@@ -23,7 +23,7 @@ export default {
     extend: {
       colors: {
         // --- Core tokens ---
-        background: "#19122B",
+        background: "#1E1535",
         surface: {
           DEFAULT: "#241C42",
           hover: "#2D2450",
