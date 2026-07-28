@@ -7,22 +7,26 @@ interface EventCardProps {
 }
 
 /**
- * EventCard — reusable card for tech events.
+ * EventCard — uses design tokens only.
+ * Titles: text-text (white)
+ * Descriptions: text-text-secondary
+ * Labels: text-text-muted
+ * Icons: text-primary
  */
 export function EventCard({ event, isRecommended }: EventCardProps) {
   return (
     <article className="glass-card rounded-2xl p-7 transition-all duration-300 ease-elegant hover:-translate-y-1 hover:shadow-hover">
       {/* Recommended badge */}
       {isRecommended && (
-        <div className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-mint-light px-3 py-1 text-caption font-bold text-mint-dark">
-          <Heart className="h-3 w-3" aria-hidden="true" />
+        <div className="badge mb-4">
+          <Heart className="h-3 w-3 text-accent" aria-hidden="true" />
           Recomendado para vos
         </div>
       )}
 
       {/* Header */}
       <div className="mb-4 flex items-center gap-3">
-        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-lavender-light">
+        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-surface-hover">
           <Calendar className="h-5 w-5 text-primary" aria-hidden="true" />
         </div>
         <div>
@@ -32,7 +36,7 @@ export function EventCard({ event, isRecommended }: EventCardProps) {
       </div>
 
       {/* Description */}
-      <p className="mb-4 text-small text-muted leading-relaxed">{event.description}</p>
+      <p className="mb-4 text-small text-text-secondary leading-relaxed">{event.description}</p>
 
       {/* Topics */}
       <div className="mb-4">
@@ -48,13 +52,13 @@ export function EventCard({ event, isRecommended }: EventCardProps) {
 
       {/* Audience */}
       <div className="mb-5">
-        <p className="mb-1.5 text-caption font-semibold uppercase tracking-wider text-indigo-muted">Público</p>
-        <p className="text-small text-muted">{event.audience}</p>
+        <p className="mb-1.5 text-caption font-semibold uppercase tracking-wider text-text-muted">Público</p>
+        <p className="text-small text-text-secondary">{event.audience}</p>
       </div>
 
       {/* CTA */}
       <a href={event.url} target="_blank" rel="noopener noreferrer"
-        className="group inline-flex items-center gap-2 rounded-xl bg-indigo-faint px-5 py-2.5 text-small font-semibold text-indigo transition-all duration-300 ease-elegant hover:bg-gradient-indigo hover:text-white hover:shadow-soft">
+        className="group inline-flex items-center gap-2 rounded-xl bg-surface-hover px-5 py-2.5 text-small font-semibold text-text transition-all duration-300 ease-elegant hover:bg-gradient-brand hover:text-background hover:shadow-glow">
         Saber más
         <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
       </a>
