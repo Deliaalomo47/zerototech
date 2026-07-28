@@ -1,5 +1,5 @@
 import { ArrowDown } from "lucide-react";
-import { Logo } from "@/components/ui/Logo";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 
 /**
  * Hero — Noxora Dark Space.
@@ -18,7 +18,7 @@ export function HeroSection() {
     >
       {/* Logo animated */}
       <div className="mb-8 animate-fade-up">
-        <Logo size={72} showText={false} animated />
+        <BrandLogo size={120} variant="hero" animated showGlow />
       </div>
 
       {/* Headline */}

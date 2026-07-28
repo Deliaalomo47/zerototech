@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Logo } from "@/components/ui/Logo";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 
 const messages = [
   "Analizando tus respuestas...",
@@ -21,7 +21,7 @@ export function DiscoveryLoader() {
   return (
     <div className="flex min-h-[50vh] flex-col items-center justify-center text-center animate-fade-up">
       <div className="mb-8">
-        <Logo size={56} showText={false} animated />
+        <BrandLogo size={56} variant="loading" />
       </div>
 
       <h2 className="mb-3 font-display text-title-sm text-text">

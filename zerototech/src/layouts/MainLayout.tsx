@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Header } from "@/features/home";
-import { Logo } from "@/components/ui/Logo";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 
 interface MainLayoutProps {
   children?: ReactNode;
@@ -19,8 +19,9 @@ export function MainLayout({ children }: MainLayoutProps) {
 
         <footer className="mt-26 border-t border-border bg-surface/50">
           <div className="mx-auto max-w-5xl px-6 py-12">
-            <div className="mb-6">
-              <Logo size={32} />
+            <div className="mb-6 flex items-center gap-2.5">
+              <BrandLogo size={28} variant="navbar" />
+              <span className="font-display text-body font-bold bg-gradient-brand bg-clip-text text-transparent">ZeroToTech</span>
             </div>
             <p className="mb-8 max-w-sm text-small text-text-faint leading-relaxed">
               Tu guía para descubrir el ecosistema tecnológico.

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/utils/cn";
-import { Logo } from "@/components/ui/Logo";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 
 const navItems = [
   { id: "inicio", label: "Inicio" },
@@ -27,8 +27,11 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full bg-surface-glass backdrop-blur-lg border-b border-border">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <a href="/" aria-label="ZeroToTech — Inicio">
-          <Logo size={36} />
+        <a href="/" className="flex items-center gap-2.5" aria-label="ZeroToTech — Inicio">
+          <BrandLogo size={34} variant="navbar" animated />
+          <span className="font-display text-xl font-bold tracking-tight bg-gradient-brand bg-clip-text text-transparent">
+            ZeroToTech
+          </span>
         </a>
 
         {/* Desktop nav */}
