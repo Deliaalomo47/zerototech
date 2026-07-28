@@ -12,7 +12,7 @@
   }
 
   h1, h2, h3, h4 {
-    @apply font-display text-text;
+    @apply font-display text-text-heading font-bold;
     text-wrap: balance;
   }
 
@@ -22,7 +22,7 @@
 
   ::selection {
     background-color: rgba(127, 255, 208, 0.2);
-    color: #E8E4F0;
+    color: #F8F7FF;
   }
 
   :focus-visible {
@@ -40,46 +40,40 @@
 }
 
 @layer components {
-  /* Dark glass card */
+  /* Card component — elevated, visible, accessible */
   .glass-card {
     @apply bg-surface border border-border rounded-xl shadow-card;
-    background-image: linear-gradient(135deg, rgba(156,140,255,0.03) 0%, rgba(127,255,208,0.02) 100%);
+    transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 250ms cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 250ms ease;
+  }
+  .glass-card:hover {
+    @apply -translate-y-[3px] shadow-hover border-border-hover;
   }
 
   /* Star field background */
   .starfield {
     position: relative;
   }
-  .starfield::before,
-  .starfield::after {
+  .starfield::before {
     content: "";
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: 0;
-  }
-  .starfield::before {
     background-image:
-      radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.4) 0%, transparent 100%),
-      radial-gradient(1px 1px at 30% 65%, rgba(255,255,255,0.3) 0%, transparent 100%),
-      radial-gradient(1px 1px at 50% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
-      radial-gradient(1px 1px at 70% 40%, rgba(255,255,255,0.3) 0%, transparent 100%),
-      radial-gradient(1px 1px at 90% 80%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.35) 0%, transparent 100%),
+      radial-gradient(1px 1px at 30% 65%, rgba(255,255,255,0.25) 0%, transparent 100%),
+      radial-gradient(1px 1px at 50% 10%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 40%, rgba(255,255,255,0.25) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
       radial-gradient(1px 1px at 15% 85%, rgba(255,255,255,0.2) 0%, transparent 100%),
-      radial-gradient(1px 1px at 45% 50%, rgba(255,255,255,0.3) 0%, transparent 100%),
-      radial-gradient(1px 1px at 75% 15%, rgba(255,255,255,0.4) 0%, transparent 100%),
-      radial-gradient(1px 1px at 25% 45%, rgba(156,140,255,0.4) 0%, transparent 100%),
-      radial-gradient(1px 1px at 60% 75%, rgba(127,255,208,0.3) 0%, transparent 100%),
-      radial-gradient(1.5px 1.5px at 85% 30%, rgba(255,158,205,0.3) 0%, transparent 100%),
-      radial-gradient(1px 1px at 5% 55%, rgba(255,255,255,0.25) 0%, transparent 100%),
-      radial-gradient(1px 1px at 40% 90%, rgba(255,255,255,0.3) 0%, transparent 100%),
-      radial-gradient(1px 1px at 65% 5%, rgba(255,255,255,0.35) 0%, transparent 100%),
-      radial-gradient(1px 1px at 95% 60%, rgba(255,255,255,0.2) 0%, transparent 100%);
-  }
-  .starfield::after {
-    background:
-      radial-gradient(ellipse 60% 40% at 20% 80%, rgba(156,140,255,0.04) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 30% at 80% 20%, rgba(127,255,208,0.03) 0%, transparent 60%);
+      radial-gradient(1px 1px at 45% 50%, rgba(255,255,255,0.25) 0%, transparent 100%),
+      radial-gradient(1px 1px at 75% 15%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 45%, rgba(156,140,255,0.35) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 75%, rgba(127,255,208,0.25) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 85% 30%, rgba(255,158,205,0.25) 0%, transparent 100%),
+      radial-gradient(1px 1px at 5% 55%, rgba(255,255,255,0.2) 0%, transparent 100%);
   }
 
   /* Stagger utility */
