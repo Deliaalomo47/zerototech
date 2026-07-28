@@ -35,7 +35,7 @@ export function OpportunitiesSection({ userProfile }: OpportunitiesSectionProps)
     <section id="oportunidades" className="mx-auto max-w-5xl px-6 py-22">
       {/* Header */}
       <div className="mb-12 animate-fade-up">
-        <h2 className="font-display text-title text-text sm:text-[2.25rem]">
+        <h2 className="font-display text-title text-accent sm:text-[2.25rem]">
           Oportunidades para crecer
         </h2>
         <p className="mt-3 max-w-2xl text-subtitle text-text-secondary">
